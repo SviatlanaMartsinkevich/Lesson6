@@ -36,6 +36,8 @@ public class SmokeTest2 {
 //      3. Ввести пол женский
 
         sexDropDown.selectByIndex(1);
+//      sexDropDown.selectByValue("1");
+//      sexDropDown.selectByVisibleText("женский");
 
 //      4. Ввести креатинин
         WebElement creatinineElement = driver.findElement(By.id("oCr"));
@@ -70,6 +72,7 @@ public class SmokeTest2 {
         Assert.assertEquals(actualMDRD1, expectedMDRD1, "МДРД1 различные");
         Assert.assertEquals(actualCG, expectedCG, "CG различные");
         Assert.assertEquals(actualBSA, expectedBSA, "BCA различные");
+
 
         driver.quit();
 
