@@ -1,8 +1,10 @@
 package tests;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class HomeWork {
@@ -49,9 +51,16 @@ public class HomeWork {
         calculate.click();
 
 
-        Thread.sleep(5000);
-
 //      7. Сравниваем результат
+
+        String expectedPower = "4200";
+        String expectedSpecificPower = "120";
+
+        String actualPower = driver.findElement(By.id("floor_cable_power")).getAttribute("value");
+        String actualSpecificPower = driver.findElement(By.id("spec_floor_cable_power")).getAttribute("value");
+
+        Assert.assertEquals(actualPower, expectedPower, "Мощность кабеля различна");
+        Assert.assertEquals(actualSpecificPower, expectedSpecificPower, "Удельная мощность различна");
 
         driver.close();
         driver.quit();

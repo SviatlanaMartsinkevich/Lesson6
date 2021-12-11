@@ -52,9 +52,9 @@ public class SmokeTest {
 
 
 
+        Thread.sleep(5000);
 
-
-        driver.quit();
+//        driver.quit();
 
     }
 
