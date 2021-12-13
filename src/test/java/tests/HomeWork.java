@@ -26,30 +26,27 @@ public class HomeWork {
         WebElement widthFloorElement = driver.findElementById("el_f_width");
         widthFloorElement.sendKeys("5");
 
-//      3. Вводим данные доины пола
+//      3. Вводим данные длины пола
 
         WebElement lengthFloorElement = driver.findElementById("el_f_lenght");
         lengthFloorElement.sendKeys("7");
 
-//       4. Выбираем тип комнаты
+//      4. Выбираем тип комнаты
 
         WebElement room = driver.findElementById("room_type");
         Select roomDropDown = new Select(room);
-
         roomDropDown.selectByVisibleText("Кухня или спальня");
 
 //      5. Выбираем тип обогрева
 
         WebElement heatingTypeElement = driver.findElementById("heating_type");
         Select heatingTypeDropDown = new Select(heatingTypeElement);
-
         heatingTypeDropDown.selectByVisibleText("Основное отопление");
 
 //      6. Нажимаем рассчитать
 
         WebElement calculate = driver.findElementByCssSelector("input[type ='button']");
         calculate.click();
-
 
 //      7. Сравниваем результат
 
@@ -62,10 +59,7 @@ public class HomeWork {
         Assert.assertEquals(actualPower, expectedPower, "Мощность кабеля различна");
         Assert.assertEquals(actualSpecificPower, expectedSpecificPower, "Удельная мощность различна");
 
-        driver.close();
         driver.quit();
-
-
     }
 }
 

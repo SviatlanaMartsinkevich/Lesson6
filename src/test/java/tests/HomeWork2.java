@@ -14,10 +14,8 @@ public class HomeWork2 {
     String URL = "https://masterskayapola.ru/kalkulyator/laminata.html";
 
     @Test
-
     public void homework_test2() throws Exception {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-
 
 //      1. Открыть браузер и переходим на тестируюмую страницу
 
@@ -25,67 +23,66 @@ public class HomeWork2 {
         driver.manage().window().maximize();
         driver.get(URL);
 
-
-//        2. Вводим данные в поле "длина помещения"
+//       2. Вводим данные в поле "длина помещения"
 
         WebElement lengthRoom = driver.findElement(By.name("calc_roomwidth"));
         lengthRoom.sendKeys(Keys.CONTROL + "a");
         lengthRoom.sendKeys("8");
 
-//        3. Вводим данные в поле "ширина помещения"
+//       3. Вводим данные в поле "ширина помещения"
 
         WebElement widthRoom = driver.findElement(By.name("calc_roomheight"));
         widthRoom.sendKeys(Keys.CONTROL + "a");
         widthRoom.sendKeys("5");
 
-//        4. Вводим данные в поле "длина"
+//       4. Вводим данные в поле "длина"
 
         WebElement length = driver.findElement(By.name("calc_lamwidth"));
         length.sendKeys(Keys.CONTROL + "a");
         length.sendKeys("1200");
 
-//        5. Вводим данные в поле "ширина"
+//      5. Вводим данные в поле "ширина"
 
         WebElement width = driver.findElement(By.name("calc_lamheight"));
         width.sendKeys(Keys.CONTROL + "a");
         width.sendKeys("450");
 
-//        6. Вводим в данные в поле "количество в упаковке"
+//       6. Вводим в данные в поле "количество в упаковке"
 
         WebElement number = driver.findElement(By.name("calc_inpack"));
         number.sendKeys(Keys.CONTROL + "a");
         number.sendKeys("12");
 
-//        7. Вводим данные в поле "цена"
+//      7. Вводим данные в поле "цена"
 
         WebElement price = driver.findElement(By.name("calc_price"));
         price.sendKeys(Keys.CONTROL + "a");
         price.sendKeys("650");
 
-//        8. Вводим данные в поле "направление укладки"
+//      8. Вводим данные в поле "направление укладки"
 
         WebElement direction = driver.findElement(By.name("calc_direct"));
         Select directionDropDown = new Select(direction);
         directionDropDown.selectByValue("tow");
 
-//        9. Вводим данные в поле "смещение рядов"
+//       9. Вводим данные в поле "смещение рядов"
 
         WebElement offsetNear = driver.findElement(By.name("calc_bias"));
         offsetNear.sendKeys(Keys.CONTROL + "a");
         offsetNear.sendKeys("350");
 
-//        10. Вводим данные в поле "отступ от стены"
+//       10. Вводим данные в поле "отступ от стены"
 
         WebElement indentFromTheWall = driver.findElement(By.name("calc_walldist"));
         indentFromTheWall.sendKeys(Keys.CONTROL + "a");
         indentFromTheWall.sendKeys("10");
 
-//        11. Нажимаем кнопку "рассчитать"
+//       11. Нажимаем кнопку "рассчитать"
 
         WebElement calculate = driver.findElementByCssSelector("input[class ='btn btn-secondary btn-lg tocalc']");
         calculate.click();
 
-//        12. Сравниваем полученные результаты
+//       12. Сравниваем полученные результаты
 
         String expectedSquare = "39.74 м2.";
         String expectedNumberOfPanels = "81 шт.";
@@ -108,9 +105,6 @@ public class HomeWork2 {
         Assert.assertEquals(actualRemainder, expectedRemainder, "Остатки не совпадают");
         Assert.assertEquals(actualSegments, expectedSegments, "Отрезки не совпадают");
 
-
-        driver.close();
         driver.quit();
-
     }
 }
