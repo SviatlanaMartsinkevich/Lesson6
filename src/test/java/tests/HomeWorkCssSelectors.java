@@ -2,15 +2,15 @@ package tests;
 
 import org.openqa.selenium.By;
 
-public class HomeWork_2 {
+public class HomeWorkCssSelectors {
     String URL = "https://www.alfabank.by/";
 
     public void homework_2() {
-        By classSelector = By.cssSelector(".dimmer js-dimmer");
-        By classSelector1 = By.cssSelector("dimmer js-dimmer");
+        By classSelector = By.cssSelector(".dimmer");
+        By classSelector1 = By.className("dimmer");
 
         By idSelector = By.cssSelector("#topmailru-code");
-        By idSelector1 = By.cssSelector("topmailru-code");
+        By idSelector1 = By.id("topmailru-code");
 
         By tagSelector = By.cssSelector("title");
         By tagSelector1 = By.tagName("title");

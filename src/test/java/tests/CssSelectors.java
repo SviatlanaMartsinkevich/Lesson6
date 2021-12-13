@@ -5,10 +5,10 @@ import org.openqa.selenium.By;
 public class CssSelectors {
     private void cssSelectors() {
         By classSelector = By.cssSelector(".radio"); // поиск по классу radio
-        By classSelector1 = By.cssSelector("radio"); // поиск по классу radio
+        By classSelector1 = By.className("radio"); // поиск по классу radio
 
         By idSelector = By.cssSelector("#suite_mode_single"); // поиск по классу по id
-        By idSelector1 = By.cssSelector("suite_mode_single"); // поиск по классу по id
+        By idSelector1 = By.id("suite_mode_single"); // поиск по классу по id
 
         By tagSelector = By.cssSelector("label"); // поиск по классу по тегу
         By tagSelector1 = By.tagName("label"); // поиск по классу по тегу
