@@ -35,7 +35,5 @@ public class CssSelectors {
         By lastChildSelector = By.cssSelector(" li:last-child"); // поиск последнего дочернего элемента
         By nthChildFromBeginSelector = By.cssSelector("li:nth-child(2)"); // поиск н-го дочернего элемента с начала
         By nthChildFromEndSelector = By.cssSelector(" li:nth-last-child(2)"); // поиск н-го дечернего элемента с конца
-
-
     }
 }

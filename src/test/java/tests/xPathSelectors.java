@@ -51,11 +51,18 @@ public class xPathSelectors {
     private static String path3_1 = "//ul/descendant:span";
     private static String path3_2 = "//ul//span";  // аналог только проще
 
-    // Использование following - выбирает всё в документе после закрытия тега текущего узла
+    //Использование following - Выбирает всё в документе после закрытия тэга текущего узла
     private static String path4_1 = "//label[@for='announcement']/following::form";
-    private static String path4_2 = "//(label[@for='announcement']/following::div/*[@class='checkbox'])[1]";
+    private static String path4_2 = "(//label[@for=\"announcement\"]/following::div/*[@class='checkbox'])[1]";
+
+    //Использование following-sibling - Выбирает все узлы одного уровня после текущего узла
+    private static String path5_1 = "//label[@for=\"announcement\"]/following-sibling::div";
 
 
+    //Использование preceding - Выбирает все узлы, которые появляются перед текущим узлом в документе
+    private static String path6_1 = "//label[@for=\"announcement\"]/preceding::div";
 
+    //Использование preceding-sibling - Выбирает все узлы одного уровня до текущего узла
+    private static String path7_1 = "//label[@for=\"announcement\"]/preceding-sibling::div";
 }
 
