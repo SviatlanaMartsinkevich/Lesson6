@@ -9,14 +9,6 @@ import pages.LoginPage;
 
 public class SmokeTest extends BaseTest {
 
-//    @Test
-//    public void loginTest() {
-//        LoginPage loginPage = new LoginPage(driver);
-//        loginPage.getEmailField().sendKeys(ReadProperties.getUsername());
-//        loginPage.getPasswordField().sendKeys(ReadProperties.getPassword());
-//        loginPage.getLoginButton().click();
-//    }
-
     @Test
     public void loginTest() {
         LoginPage loginPage = new LoginPage(driver);
@@ -35,5 +27,14 @@ public class SmokeTest extends BaseTest {
         AddProjectPage addProjectPage = new AddProjectPage(driver);
         addProjectPage.addNewProject(ReadProperties.getProjectName(), ReadProperties.getAnnouncement());
 
+    }
+
+    @Test
+    public void findProjectTest() throws InterruptedException {
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.login(ReadProperties.getUsername(), ReadProperties.getPassword());
+
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        dashboardPage.findProject();
     }
 }
