@@ -42,7 +42,6 @@ public class BaseTest {
             default:
                 System.out.println("This type of browser is not supported.");
                 break;
-
         }
 
         driver.manage().window().maximize();
