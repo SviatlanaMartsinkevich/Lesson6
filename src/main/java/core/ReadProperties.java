@@ -24,5 +24,9 @@ public class ReadProperties {
     public static String getProjectName() { return properties.getProperty("projectName"); }
     public static String getAnnouncement() { return properties.getProperty("announcement"); }
     public static String getName() {return  properties.getProperty("name");}
+    public static int getTimeOut() {
+        return Integer.parseInt(properties.getProperty("timeout"));
+    }
+
 
 }
