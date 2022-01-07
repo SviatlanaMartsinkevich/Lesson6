@@ -9,7 +9,7 @@ public class CalcTest  {
     @Test(invocationCount = 6, threadPoolSize = 3)
     public void invocationTest() throws InterruptedException {
 //        Thread.sleep(250);
-        Assert.assertEquals(calc.sum(2, 3), 6);
+        Assert.assertEquals(calc.sum(2, 3), 5);
     }
 
     @Test(enabled = false)

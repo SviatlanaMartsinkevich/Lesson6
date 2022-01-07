@@ -14,6 +14,7 @@ public class CalcTest1 extends BaseTest {
     @Test
     public void testSum1(){
         System.out.println("CalcTest1 -> testSum1");
+        Assert.assertEquals(calc.sum(2, 3), 6);
     }
 
     @Test (dataProvider = "dataForSum", dataProviderClass = StaticProvider.class)
