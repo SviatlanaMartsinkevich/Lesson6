@@ -1,7 +1,8 @@
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
-public class RetryTest {
+public class RetryTest  {
 
     public int attempt = 1;
 
@@ -10,8 +11,8 @@ public class RetryTest {
         if (attempt == 4) {
             Assert.assertTrue(true);
         } else {
-            attempt++;
             System.out.println(attempt);
+            attempt++;
             throw new NullPointerException();
         }
     }

@@ -8,4 +8,9 @@ public class Listener implements ITestListener {
         System.out.println("=======================");
     }
 
+    public void onTestSkipped(ITestResult result) {
+        System.out.println("=====================");
+        System.out.println("Test skipped");
+        System.out.println("=====================");
+    }
 }
