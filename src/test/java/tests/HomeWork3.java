@@ -21,6 +21,9 @@ public class HomeWork3 {
     public void homework_test3() throws Exception {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 
+        String executeNumberOfBoards = "53";
+        String executeNumberOfPackages = "7";
+
 //      1. Открываем браузер и переходим на тестируюмую страницу
         ChromeDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -74,9 +77,6 @@ public class HomeWork3 {
         driver.executeScript("arguments[0].click();", calculate);
 
 //      10. Сравниваем результаты
-
-        String executeNumberOfBoards = "53";
-        String executeNumberOfPackages = "7";
 
         String actualNumberOfBoards = driver.findElement(By.cssSelector("[style='padding:5px 0;font-size:22px; color:#C80303; font-weight:bold;']")).getText();
         String actualNumberOfPackages =  driver.findElement(By.cssSelector("[style='padding:5px 0;font-size:18px; color:#0E8C19; font-weight:bold;'")).getText();

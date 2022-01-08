@@ -14,6 +14,9 @@ public class HomeWork {
     @Test
     public void homework_test1() throws InterruptedException {
 
+        String expectedPower = "4200";
+        String expectedSpecificPower = "120";
+
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 
 //      1.  Открыть браузер и перейти на тестируюмую страницу
@@ -49,9 +52,6 @@ public class HomeWork {
         calculate.click();
 
 //      7. Сравниваем результат
-
-        String expectedPower = "4200";
-        String expectedSpecificPower = "120";
 
         String actualPower = driver.findElement(By.id("floor_cable_power")).getAttribute("value");
         String actualSpecificPower = driver.findElement(By.id("spec_floor_cable_power")).getAttribute("value");

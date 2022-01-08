@@ -17,6 +17,13 @@ public class HomeWork2 {
     public void homework_test2() throws Exception {
         System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
 
+        String expectedSquare = "39.74 м2.";
+        String expectedNumberOfPanels = "81 шт.";
+        String expectedNumberOfPackage = "7 шт.";
+        String expectedPrice = "29484 руб.";
+        String expectedRemainder = "3 шт.";
+        String expectedSegments = "3 шт.";
+
 //      1. Открыть браузер и переходим на тестируюмую страницу
 
         ChromeDriver driver = new ChromeDriver();
@@ -83,13 +90,6 @@ public class HomeWork2 {
         calculate.click();
 
 //       12. Сравниваем полученные результаты
-
-        String expectedSquare = "39.74 м2.";
-        String expectedNumberOfPanels = "81 шт.";
-        String expectedNumberOfPackage = "7 шт.";
-        String expectedPrice = "29484 руб.";
-        String expectedRemainder = "3 шт.";
-        String expectedSegments = "3 шт.";
 
         String actualSquare = driver.findElement(By.id("s_lam")).getText();
         String actualNumberOfPanels = driver.findElement(By.id("l_count")).getText();
