@@ -2,14 +2,19 @@ package baseEntities;
 
 
 import core.ReadProperties;
+import org.jsoup.Connection;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import utils.Waits;
 
+import java.util.NoSuchElementException;
+
 public abstract class BasePage {
+    protected static final int WAIT_FOR_PAGE_LOADED_IN_SECONDS = 30;
+
     protected WebDriver driver;
-    protected Waits waits;
     protected String BASE_URL;
+    protected Waits waits;
 
     public BasePage(WebDriver driver) {
         this(driver, false);
@@ -23,16 +28,25 @@ public abstract class BasePage {
         if (openPageByUrl) {
             openPage();
         }
+
+        waitForOpen();
     }
 
     protected abstract void openPage();
+    protected abstract boolean isPageOpened();
 
-    public boolean isPageOpened(By by) {
-        try {
-            return waits.waitForVisibility(by).isDisplayed();
-        } catch (Exception exception) {
-            exception.printStackTrace();
-            return false;
+    protected void waitForOpen() {
+        int tryCount = 0;
+        boolean isPageOpenedIndicator = isPageOpened();
+
+        while (!isPageOpenedIndicator
+                && tryCount < (WAIT_FOR_PAGE_LOADED_IN_SECONDS/ReadProperties.getTimeOut())) {
+            tryCount++;
+            isPageOpenedIndicator = isPageOpened();
+        }
+
+        if (!isPageOpenedIndicator) {
+            throw new AssertionError("Page was not opened");
         }
     }
 }
