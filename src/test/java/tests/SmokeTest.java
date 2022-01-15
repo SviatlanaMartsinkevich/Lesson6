@@ -16,17 +16,12 @@ public class SmokeTest extends BaseTest {
         User user = new User()
                 .setEmail(ReadProperties.getUsername())
                 .setPassword(ReadProperties.getPassword());
+
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(user);
 
-        loginPage.getEmailField().sendKeys(ReadProperties.getUsername());
-        loginPage.getPasswordField().sendKeys(ReadProperties.getPassword());
-        loginPage.getLoginButton().click();
-
         DashboardPage dashboardPage = new DashboardPage(driver);
-        waits.waitForVisibility(dashboardPage.getAddProjectButton());
-
-        Assert.assertTrue(dashboardPage.isPageOpened());
+        Assert.assertTrue(dashboardPage.getAddProjectButton().isDisplayed());
     }
 
     @Test(retryAnalyzer = Retry.class)
