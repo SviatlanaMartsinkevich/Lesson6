@@ -11,17 +11,17 @@ public class WaitsTest extends BaseTest {
 
     @Test
     public void explicitlyWait(){
-        driver.get("http://the-internet.herokuapp.com/hovers");
+        driver.get("http://the-internet.herokuapp.com/dynamic_loading/1");
 
         Waits waits= new Waits(driver);
 
-        WebElement figure = driver.findElement(By.className("figure"));
-        figure.click();
-        //Для невидимых элементов
-        /*WebElement caption = driver.findElement(By.xpath("//h5[. = 'name: user1']"));
-        Assert.assertTrue(caption.isDisplayed());*/
-        //Для видимых элементов
+        WebElement button = driver.findElement(By.tagName("button"));
+        button.click();
 
-        Assert.assertTrue(waits.waitForVisibility(By.xpath("//h5[. = 'name: user1']")).isDisplayed());
+        WebElement loading = driver.findElement(By.id("loading"));
+        Assert.assertTrue(waits.waitForInvisibility(loading));
+
+        WebElement text = driver.findElement((By.xpath("//h4[. = 'Hello World!']")));
+        Assert.assertEquals(text.getText(), "Hello World!");
     }
 }
