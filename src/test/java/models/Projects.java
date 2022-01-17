@@ -1,13 +1,19 @@
 package models;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import core.ReadProperties;
+import org.openqa.selenium.WebDriver;
 
-public class Projects  {
+import java.util.Locale;
+
+
+public class Projects {
 
     private String name;
     private String comment;
+    private String suiteModeSingleProject;
+    private String suiteModelSingleBaseProject;
+    private String suiteModelMultiProject;
+    private String projectsType;
 
     public Projects() {
     }
@@ -18,7 +24,7 @@ public class Projects  {
 
     public Projects setName(String name) {
         this.name = name;
-        return this
+        return this;
     }
 
     public String getComment() {
@@ -30,75 +36,54 @@ public class Projects  {
         return this;
     }
 
-    /*   private List<Projects> projectsType = new ArrayList<>();
-    private String suiteModeSingleProject;
-    private String suiteModelSingleBaseProject;
-    private String suiteModelMultiProject;
-
-    public Projects(String suiteModeSingleProject, String suiteModelSingleBaseProject, String suiteModelMultiProject) {
-        this.suiteModeSingleProject = suiteModeSingleProject;
-        this.suiteModelSingleBaseProject = suiteModelSingleBaseProject;
-        this.suiteModelMultiProject = suiteModelMultiProject;
-    }
-
-    public List<Projects> getProjectsType() {
-        return projectsType;
-    }
-
-    public void setProjectsType(List<Projects> projectsType) {
-        this.projectsType = projectsType;
-    }
-
     public String getSuiteModeSingleProject() {
         return suiteModeSingleProject;
     }
 
-    public void setSuiteModeSingleProject(String suiteModeSingleProject) {
+    public Projects setSuiteModeSingleProject(String suiteModeSingleProject) {
         this.suiteModeSingleProject = suiteModeSingleProject;
+        return this;
     }
 
     public String getSuiteModelSingleBaseProject() {
         return suiteModelSingleBaseProject;
     }
 
-    public void setSuiteModelSingleBaseProject(String suiteModelSingleBaseProject) {
+    public Projects setSuiteModelSingleBaseProject(String suiteModelSingleBaseProject) {
         this.suiteModelSingleBaseProject = suiteModelSingleBaseProject;
+        return this;
     }
 
     public String getSuiteModelMultiProject() {
         return suiteModelMultiProject;
     }
 
-    public void setSuiteModelMultiProject(String suiteModelMultiProject) {
+    public Projects setSuiteModelMultiProject(String suiteModelMultiProject) {
         this.suiteModelMultiProject = suiteModelMultiProject;
-    }
-*/
-
-   /* Random random = new Random();
-    int number = random.nextInt(2);
-
-    public Projects() {
+        return this;
     }
 
-    public Projects(int number) {
-        switch (0) {
+    public String getProjectsType() {
+        return projectsType;
+    }
+
+    public Projects setProjectsType(String projectsType) {
+        this.projectsType = projectsType;
+        return this;
+    }
+
+    /*public Projects(String projectTypeName) {
+        switch (projectTypeName.toLowerCase(Locale.ROOT)) {
             case "SuiteModeSingleProject":
                 projectsType = ProjectsType.SUITE_MODE_SINGLE_PROJECT;
                 break;
-        }
-        switch (1) {
             case "SuiteModelSingleBaseProject":
                 projectsType = ProjectsType.SUITE_MODE_SINGLE_BASE_LINE_PROJECT;
                 break;
-        }
-        switch (2) {
             case "SuiteModelMultiProject":
                 projectsType = ProjectsType.SUITE_MODEL_MULTI_PROJECT;
                 break;
         }
     }
     */
-
-
-
 }

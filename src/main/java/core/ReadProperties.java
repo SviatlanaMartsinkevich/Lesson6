@@ -47,5 +47,7 @@ public class ReadProperties {
     public static String getAnnouncement() {
         return properties.getProperty("announcement");
     }
+
+    public static String getProjectsType() { return properties.getProperty("projectsType"); }
 }
 

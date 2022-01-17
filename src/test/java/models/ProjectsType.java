@@ -18,8 +18,6 @@ public enum ProjectsType {
         return this.projectType;
     }
 
-    public String getProjectType
-
     public String toString() {
         switch (this) {
             case SUITE_MODE_SINGLE_PROJECT:
