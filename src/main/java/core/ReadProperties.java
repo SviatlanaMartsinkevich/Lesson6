@@ -39,5 +39,13 @@ public class ReadProperties {
     public static int getTimeOut() {
         return Integer.parseInt(properties.getProperty("timeout"));
     }
+
+    public static String getNameProject() {
+        return properties.getProperty("nameProject");
+    }
+
+    public static String getAnnouncement() {
+        return properties.getProperty("announcement");
+    }
 }
 
