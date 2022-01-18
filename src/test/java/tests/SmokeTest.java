@@ -2,9 +2,9 @@ package tests;
 
 import baseEntities.BaseTest;
 import core.ReadProperties;
+import enums.ProjectType;
 import models.Project;
 import models.User;
-import models.UserBuilder;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.DashboardPage;
@@ -13,7 +13,6 @@ import utils.Randomization;
 import utils.Retry;
 
 public class SmokeTest extends BaseTest {
-
     Project addProject;
     Project updateProject;
 
@@ -30,7 +29,7 @@ public class SmokeTest extends BaseTest {
         Assert.assertTrue(dashboardPage.getAddProjectButton().isDisplayed());
     }
 
-    @Test(retryAnalyzer = Retry.class)
+    @Test (retryAnalyzer = Retry.class)
     public void flakyLoginTest() {
         LoginPage loginPage = new LoginPage(driver);
 
@@ -39,9 +38,10 @@ public class SmokeTest extends BaseTest {
         loginPage.getLoginButton().click();
 
         DashboardPage dashboardPage = new DashboardPage(driver);
-        waits.waitForVisibility(dashboardPage.getAddProjectButton());
+        driver.get("https://qa1504.testrail.io/index.php?/admin/overview");
 
-        Assert.assertTrue(dashboardPage.isPageOpened());
+        dashboardPage = new DashboardPage(driver, true);
+        Assert.assertTrue(dashboardPage.getAddProjectButton().isDisplayed());
     }
 
 
@@ -53,19 +53,5 @@ public class SmokeTest extends BaseTest {
         updateProject = new Project();
         updateProject.setName(Randomization.getRandomString(8));
         updateProject.setTypeOfProject(Randomization.getRandomType());
-    }
-
-    @Test
-    public void loginTestWithBuilder() {
-        UserBuilder user = new UserBuilder.Builder()
-                .withEmail(ReadProperties.getUsername())
-                .withPassword(ReadProperties.getPassword())
-                .build();
-
-        LoginPage loginPage = new LoginPage(driver);
-//        loginPage.login(user);
-
-        DashboardPage dashboardPage = new DashboardPage(driver);
-        Assert.assertTrue(dashboardPage.getAddProjectButton().isDisplayed());
     }
 }

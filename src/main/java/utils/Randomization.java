@@ -26,7 +26,7 @@ public class Randomization {
         return rnd.nextInt(rightBound);
     }
 
-    public static int getRandomType() {
+    public static ProjectType getRandomType() {
         Random rnd = new Random();
         return ProjectType.values()[rnd.nextInt(ProjectType.values().length)];
     }
