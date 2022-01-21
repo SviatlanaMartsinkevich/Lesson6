@@ -44,14 +44,13 @@ public class SmokeTest extends BaseTest {
         Assert.assertTrue(dashboardPage.getAddProjectButton().isDisplayed());
     }
 
-
     private void setupProjects() {
         addProject = new Project();
         addProject.setName(Randomization.getRandomString(8));
-        addProject.setTypeOfProject(Randomization.getRandomType());
+        addProject.setTypeOfProject(Randomization.gerRandomInt(2));
 
         updateProject = new Project();
         updateProject.setName(Randomization.getRandomString(8));
-        updateProject.setTypeOfProject(Randomization.getRandomType());
+        updateProject.setTypeOfProject(Randomization.gerRandomInt(2));
     }
 }
