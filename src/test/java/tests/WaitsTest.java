@@ -21,7 +21,6 @@ public class WaitsTest extends BaseTest {
         WebElement loading = driver.findElement(By.id("loading"));
         Assert.assertTrue(waits.waitForInvisibility(loading));
 
-        WebElement text = driver.findElement((By.xpath("//h4[. = 'Hello World!']")));
-        Assert.assertEquals(text.getText(), "Hello World!");
+        Assert.assertTrue(driver.findElement(By.xpath("//h4[. = 'Hello World!']")).isDisplayed());
     }
 }

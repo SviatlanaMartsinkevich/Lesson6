@@ -14,7 +14,7 @@ public class JSTests extends BaseTest{
 
         JavascriptExecutor javascriptExecutor = (JavascriptExecutor) driver;
 
-        javascriptExecutor.executeScript("window.scrollBy(0,4500)");
+        javascriptExecutor.executeScript("window.scrollTo(0, document.body.scrollHeight)");
 
         Assert.assertTrue(driver.findElement(By.xpath("//*[text() = 'Powered by ']")).isDisplayed());
     }
