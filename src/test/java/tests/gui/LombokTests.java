@@ -1,4 +1,4 @@
-package tests;
+package tests.gui;
 
 import core.ReadProperties;
 import models.User;
