@@ -9,7 +9,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.Endpoints;
 
-import java.lang.reflect.Array;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -114,8 +113,7 @@ public class TestRailApiTest2 extends baseEntity.BaseApiTest {
         Response response = given()
                 .get(Endpoints.GET_ALL_USERS);
 
-//        Type listType = new TypeToken<ArrayList><User>>() {}.getType();
-
+       Type listType = new TypeToken<ArrayList<User>>() {}.getType();
 
         List<User> actualUserList = gson.fromJson(response.getBody().asString(), listType);
 
