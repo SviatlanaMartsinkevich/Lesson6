@@ -1,6 +1,6 @@
 package pages;
 
-
+import baseEntities.BasePage;
 import baseEntities.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -27,7 +27,7 @@ public class DashboardPage extends BasePage {
     }
 
     @Override
-    public boolean isPageOpened() {
+    protected boolean isPageOpened() {
         return waits.waitForVisibility(PAGE_OPENED_IDENTIFIER).isDisplayed();
     }
     public WebElement getAddProjectButton() {

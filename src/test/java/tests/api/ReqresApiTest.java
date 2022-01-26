@@ -14,50 +14,44 @@ public class ReqresApiTest {
 
     @Test
     public void simpleStepByStepApiTest() {
-
         // Setup RestAssured
         RestAssured.baseURI = "https://reqres.in";
 
-        //Setup endpoint
-        int userId = 2;
-        String endpoint = "/api/users/" + userId;
+        // Setup endpoint
+        int userID = 2;
+        String endpoint = "/api/users/" + userID;
 
-        // Setup Request Object
+        // Setup request Object
         RequestSpecification httpRequest = given();
 
-        // Setup response Object
+        // Setup Response Object
         Response response = httpRequest.request(Method.GET, endpoint);
 
         // Get Response Status
         int statusCode = response.getStatusCode();
-        System.out.println("Status Code " + statusCode);
+        System.out.println("Status Code: " + statusCode);
         Assert.assertEquals(statusCode, 200);
         Assert.assertEquals(statusCode, HttpStatus.SC_OK);
 
         // Get Response Body
         String responseBody = response.getBody().asString();
-        System.out.println("Response Body: " + responseBody);
-
+        System.out.println("Response: " + responseBody);
     }
 
     @Test
     public void simpleShortApiTest() {
-
         // Setup RestAssured
         RestAssured.baseURI = "https://reqres.in";
 
-        //Setup endpoint
-        int userId = 2;
-        String endpoint = "/api/users/" + userId;
+        // Setup endpoint
+        int userID = 2;
+        String endpoint = "/api/users/" + userID;
 
-       given()
-               .when()
-               .get(endpoint)
-               .then()
-               .statusCode(HttpStatus.SC_OK)
-               .log().body();
-
-
-
+        given()
+                .when()
+                .get(endpoint)
+                .then()
+                .statusCode(HttpStatus.SC_OK)
+                .log().body();
     }
 }

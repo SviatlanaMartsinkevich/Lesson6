@@ -2,7 +2,6 @@ package tests.gui;
 
 import baseEntities.BaseTest;
 import core.ReadProperties;
-import enums.ProjectType;
 import models.Project;
 import models.User;
 import org.testng.Assert;
@@ -30,7 +29,7 @@ public class SmokeTest extends BaseTest {
         Assert.assertTrue(dashboardPage.getAddProjectButton().isDisplayed());
     }
 
-    @Test (retryAnalyzer = Retry.class)
+    @Test(retryAnalyzer = Retry.class)
     public void flakyLoginTest() {
         LoginPage loginPage = new LoginPage(driver);
 
