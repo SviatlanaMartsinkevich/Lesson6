@@ -4,7 +4,7 @@ import enums.ProjectType;
 
 import java.util.Random;
 
-public class Randomization  {
+public class Randomization {
 
     public static String getRandomString(int length) {
         int leftLimit = 97; // letter 'a'
@@ -27,6 +27,6 @@ public class Randomization  {
     }
 
     public static int getRandomType() {
-        return gerRandomInt(2) + 1;
+        return (gerRandomInt(2) + 1);
     }
 }
