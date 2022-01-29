@@ -2,82 +2,20 @@ package tests;
 
 import baseEntities.BaseTest;
 import core.ReadProperties;
-import models.Projects;
+import models.Project;
 import models.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import pages.*;
+import pages.DashboardPage;
+import pages.LoginPage;
+import utils.Randomization;
 import utils.Retry;
 
 public class SmokeTest extends BaseTest {
+    Project addProject;
+    Project updateProject;
 
     @Test
-    public void addProjectTest() {
-        User user = new User()
-                .setEmail(ReadProperties.getUsername())
-                .setPassword(ReadProperties.getPassword());
-
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(user);
-
-        DashboardPage dashboardPage = new DashboardPage(driver);
-        dashboardPage.getAddProjectButton().click();
-
-        Projects projects = new Projects()
-                .setName(ReadProperties.getNameProject())
-                .setComment(ReadProperties.getAnnouncement());
-
-        AddProjectPage addProjectPage = new AddProjectPage(driver);
-        addProjectPage.addProject(projects);
-
-        Assert.assertTrue(dashboardPage.getProjectFind().isDisplayed());
-    }
-
-    @Test
-    public void updateProjectTest() throws InterruptedException {
-        User user = new User()
-                .setEmail(ReadProperties.getUsername())
-                .setPassword(ReadProperties.getPassword());
-
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(user);
-
-        ViewProjectsPage viewProjectsPage = new ViewProjectsPage(driver);
-        viewProjectsPage.findProject();
-        viewProjectsPage.getEditButton().click();
-
-        AddProjectPage addProjectPage = new AddProjectPage(driver);
-        addProjectPage.changeProject();
-
-        viewProjectsPage.getSaveProjectButton().click();
-        Assert.assertTrue(viewProjectsPage.getMessage().isDisplayed());
-
-        viewProjectsPage.getReturnToDashboard().click();
-
-        DashboardPage dashboardPage = new DashboardPage(driver);
-        Assert.assertTrue(dashboardPage.getAddProjectButton().isDisplayed());
-    }
-
-    @Test
-    public void deleteProjectTest() throws InterruptedException {
-        User user = new User()
-                .setEmail(ReadProperties.getUsername())
-                .setPassword(ReadProperties.getPassword());
-
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(user);
-
-        DashboardPage dashboardPage = new DashboardPage(driver);
-        dashboardPage.getAdministratorButton().click();
-
-        AdministrationPage administrationPage = new AdministrationPage(driver);
-        administrationPage.getProjectsNavigationButton().click();
-
-        dashboardPage.getProjectFind();
-        Thread.sleep(5000);
-    }
-
-
     public void loginTest() {
         User user = new User()
                 .setEmail(ReadProperties.getUsername())
@@ -87,8 +25,31 @@ public class SmokeTest extends BaseTest {
         loginPage.login(user);
 
         DashboardPage dashboardPage = new DashboardPage(driver);
-        dashboardPage.getAdministratorButton().click();
-
         Assert.assertTrue(dashboardPage.getAddProjectButton().isDisplayed());
+    }
+
+    @Test(retryAnalyzer = Retry.class)
+    public void flakyLoginTest() {
+        LoginPage loginPage = new LoginPage(driver);
+
+        loginPage.getEmailField().sendKeys(ReadProperties.getUsername());
+        loginPage.getPasswordField().sendKeys(ReadProperties.getPassword());
+        loginPage.getLoginButton().click();
+
+        DashboardPage dashboardPage = new DashboardPage(driver);
+        waits.waitForVisibility(dashboardPage.getAddProjectButton());
+
+        Assert.assertTrue(dashboardPage.isPageOpened());
+    }
+
+
+    private void setupProjects() {
+        addProject = new Project();
+        addProject.setName(Randomization.getRandomString(8));
+        addProject.setTypeOfProject(Randomization.getRandomType());
+
+        updateProject = new Project();
+        updateProject.setName(Randomization.getRandomString(8));
+        updateProject.setTypeOfProject(Randomization.getRandomType());
     }
 }

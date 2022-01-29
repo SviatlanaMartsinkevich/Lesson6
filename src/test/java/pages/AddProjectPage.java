@@ -1,8 +1,8 @@
 package pages;
 
 import baseEntities.BasePage;
-import core.ReadProperties;
-import models.Projects;
+import enums.ProjectType;
+import models.Project;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -17,15 +17,11 @@ public class AddProjectPage extends BasePage {
 
     protected By nameProjectSelector = By.id("name");
     protected By announcementSelector = By.id("announcement");
-    protected By showAnnouncementSelector = By.id("show_announcement");
-
-    protected By suiteModeSingleProjectButtonSelector = By.id("suite_mode_single");
-    protected By suiteModelSingleBaseProjectButtonSelector = By.id("suite_mode_single_baseline");
-    protected By suiteModelMultiProjectSelector = By.id("suite_mode_multi");
+    protected By isShowAnnouncementSelector = By.id("show_announcement");
     protected By projectsTypeSelector = By.cssSelector("[name = 'suite_mode']");
-
     protected By addProjectButtonSelector = By.id("accept");
     protected By cancelButtonSelector = By.xpath("//a[contains(text(),'Cancel')][1]");
+    private static String typeRadioButtonSelector = "//*[@name = 'suite_mode' and @value ='replace']";
 
     public AddProjectPage(WebDriver driver) {
         super(driver);
@@ -53,20 +49,8 @@ public class AddProjectPage extends BasePage {
         return driver.findElement(announcementSelector);
     }
 
-    public WebElement getShowAnnouncementField() {
-        return driver.findElement(showAnnouncementSelector);
-    }
-
-    public WebElement getSuiteModeSingleProjectButton() {
-        return driver.findElement(suiteModeSingleProjectButtonSelector);
-    }
-
-    public WebElement getSuiteModelSingleBaseProjectButton() {
-        return driver.findElement(suiteModelSingleBaseProjectButtonSelector);
-    }
-
-    public WebElement getSuiteModelMultiProjectButton() {
-        return driver.findElement(suiteModelMultiProjectSelector);
+    public WebElement getIsShowAnnouncementField() {
+        return driver.findElement(isShowAnnouncementSelector);
     }
 
     public List<WebElement> getProjectsTypeButton() {return driver.findElements(projectsTypeSelector);}
@@ -79,15 +63,19 @@ public class AddProjectPage extends BasePage {
         return driver.findElement(cancelButtonSelector);
     }
 
+    public void setType(ProjectType type) {
+        driver.findElement(By.xpath(typeRadioButtonSelector.replace("replace", String.valueOf(type))));
+    }
 
-    public void addProject(Projects projects) {
+
+    public void addProject(Project projects) {
         getNameProjectField().sendKeys(projects.getName());
-        getAnnouncementField().sendKeys(projects.getComment());
+        getAnnouncementField().sendKeys(projects.getAnnouncement());
         chooseProject(projects);
         getAddProjectButton().click();
     }
 
-    public void chooseProject(Projects projects) {
+    public void chooseProject(Project projects) {
         Random random = new Random();
         int s = random.nextInt(2);
         switch (s) {
