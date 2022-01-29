@@ -2,17 +2,19 @@ package tests;
 
 import baseEntities.BaseTest;
 import core.ReadProperties;
-import models.Projects;
+import models.Project;
 import models.User;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.*;
-import utils.Retry;
+import utils.Randomization;
 
 public class SmokeTest extends BaseTest {
+    Project addProject;
+    Project updateProject;
 
-    @Test
-    public void addProjectTest() {
+    @Test(priority = 0)
+    public void addProjectTest() throws InterruptedException {
         User user = new User()
                 .setEmail(ReadProperties.getUsername())
                 .setPassword(ReadProperties.getPassword());
@@ -23,17 +25,16 @@ public class SmokeTest extends BaseTest {
         DashboardPage dashboardPage = new DashboardPage(driver);
         dashboardPage.getAddProjectButton().click();
 
-        Projects projects = new Projects()
-                .setName(ReadProperties.getNameProject())
-                .setComment(ReadProperties.getAnnouncement());
+        setupProjects();
 
-        AddProjectPage addProjectPage = new AddProjectPage(driver);
-        addProjectPage.addProject(projects);
+        projectSteps.addNewProject(addProject);
 
-        Assert.assertTrue(dashboardPage.getProjectFind().isDisplayed());
+        ProjectPage projectPage = new ProjectPage(driver);
+
+        Assert.assertTrue(projectPage.findProject(addProject.getName()).isDisplayed());
     }
 
-    @Test
+    @Test(priority = 1)
     public void updateProjectTest() throws InterruptedException {
         User user = new User()
                 .setEmail(ReadProperties.getUsername())
@@ -42,23 +43,20 @@ public class SmokeTest extends BaseTest {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.login(user);
 
-        ViewProjectsPage viewProjectsPage = new ViewProjectsPage(driver);
-        viewProjectsPage.findProject();
-        viewProjectsPage.getEditButton().click();
-
         AddProjectPage addProjectPage = new AddProjectPage(driver);
-        addProjectPage.changeProject();
-
-        viewProjectsPage.getSaveProjectButton().click();
-        Assert.assertTrue(viewProjectsPage.getMessage().isDisplayed());
-
-        viewProjectsPage.getReturnToDashboard().click();
-
         DashboardPage dashboardPage = new DashboardPage(driver);
+        OverviewPage overviewPage = new OverviewPage(driver);
+
+        projectSteps.updateProject(addProject, updateProject);
+
+        Assert.assertTrue(overviewPage.getMessage().isDisplayed());
+
+        overviewPage.getReturnToDashboardButton().click();
+
         Assert.assertTrue(dashboardPage.getAddProjectButton().isDisplayed());
     }
 
-    @Test
+    //  @Test
     public void deleteProjectTest() throws InterruptedException {
         User user = new User()
                 .setEmail(ReadProperties.getUsername())
@@ -73,8 +71,8 @@ public class SmokeTest extends BaseTest {
         AdministrationPage administrationPage = new AdministrationPage(driver);
         administrationPage.getProjectsNavigationButton().click();
 
-        dashboardPage.getProjectFind();
-        Thread.sleep(5000);
+//        dashboardPage.getProjectFind();
+//        Thread.sleep(5000);
     }
 
 
@@ -90,5 +88,17 @@ public class SmokeTest extends BaseTest {
         dashboardPage.getAdministratorButton().click();
 
         Assert.assertTrue(dashboardPage.getAddProjectButton().isDisplayed());
+    }
+
+    private void setupProjects() {
+        addProject = new Project();
+        addProject.setName(Randomization.getRandomString(8));
+        addProject.setAnnouncement(Randomization.getRandomString(12));
+        addProject.setTypeOfProject(Randomization.getRandomType());
+
+        updateProject = new Project();
+        updateProject.setName(Randomization.getRandomString(8));
+        updateProject.setAnnouncement(Randomization.getRandomString(12));
+        updateProject.setTypeOfProject(Randomization.getRandomType());
     }
 }

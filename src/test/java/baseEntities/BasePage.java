@@ -2,9 +2,11 @@ package baseEntities;
 
 
 import core.ReadProperties;
+import enums.ProjectType;
 import org.jsoup.Connection;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import steps.ProjectSteps;
 import utils.Waits;
 
 import java.util.NoSuchElementException;
