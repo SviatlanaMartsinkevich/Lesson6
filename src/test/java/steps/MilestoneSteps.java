@@ -1,7 +1,6 @@
 package steps;
 
 import baseEntities.BaseStep;
-import baseEntities.BaseStep;
 import models.Milestone;
 import models.Project;
 import org.openqa.selenium.WebDriver;
@@ -16,4 +15,5 @@ public class MilestoneSteps extends BaseStep {
 
     }
 }
+
 

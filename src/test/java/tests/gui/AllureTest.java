@@ -15,7 +15,7 @@ public class AllureTest {
     }
 
     @Test
-    @Description("Some detailed test name")
+    @Description("Some detailed test description")
     public void testDescription() {
         Assert.assertTrue(true);
     }
@@ -35,8 +35,8 @@ public class AllureTest {
     }
 
     @Test
-    @Link("https:// example.org")
-    @Link(name = "allureLink", type = "myLink", url = "https://onliner.by")
+    @Link("https://example.org")
+    @Link(name = "allureLink", type = "mylink", url = "https://onliner.by")
     public void testLink() {
         Assert.assertTrue(true);
     }

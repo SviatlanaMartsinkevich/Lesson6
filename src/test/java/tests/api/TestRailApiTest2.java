@@ -1,5 +1,6 @@
 package tests.api;
 
+import baseEntities.BaseApiTest;
 import com.google.common.reflect.TypeToken;
 import com.google.gson.Gson;
 import io.restassured.response.Response;
@@ -17,12 +18,10 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
-public class TestRailApiTest2 extends baseEntity.BaseApiTest {
-    int userID = 1;
-    Gson gson = new Gson();
+public class TestRailApiTest2 extends BaseApiTest {
 
     @Test
-    public void getAllUsers1() {
+    public void getAllUsers() {
         User user = User.builder()
                 .name("Alex Tros")
                 .email("atrostyanko+0401@gmail.com")
@@ -43,6 +42,8 @@ public class TestRailApiTest2 extends baseEntity.BaseApiTest {
 
     @Test
     public void getUser() {
+        int userID = 1;
+
         User expectedUser = User.builder()
                 .name("Alex Tros")
                 .email("atrostyanko+0401@gmail.com")
@@ -65,6 +66,9 @@ public class TestRailApiTest2 extends baseEntity.BaseApiTest {
 
     @Test
     public void getUser1() {
+        int userID = 1;
+        Gson gson = new Gson();
+
         User expectedUser = User.builder()
                 .name("Alex Tros")
                 .email("atrostyanko+0401@gmail.com")
@@ -84,6 +88,8 @@ public class TestRailApiTest2 extends baseEntity.BaseApiTest {
 
     @Test
     public void getUsers() {
+        Gson gson = new Gson();
+
         User expectedUser = User.builder()
                 .name("Alex Tros")
                 .email("atrostyanko+0401@gmail.com")
@@ -102,6 +108,8 @@ public class TestRailApiTest2 extends baseEntity.BaseApiTest {
 
     @Test
     public void getUsers1() {
+        Gson gson = new Gson();
+
         User expectedUser = User.builder()
                 .name("Alex Tros")
                 .email("atrostyanko+0401@gmail.com")
@@ -113,12 +121,14 @@ public class TestRailApiTest2 extends baseEntity.BaseApiTest {
         Response response = given()
                 .get(Endpoints.GET_ALL_USERS);
 
-       Type listType = new TypeToken<ArrayList<User>>() {}.getType();
+        Type listType = new TypeToken<ArrayList<User>>() {
+        }.getType();
+        List<User> actualUsersList = gson.fromJson(response.getBody().asString(), listType);
 
-        List<User> actualUserList = gson.fromJson(response.getBody().asString(), listType);
-
-       // User[] actualUser = gson.fromJson(response.getBody().asString(), User[].class);
-
-        Assert.assertEquals(actualUserList, expectedUser);
+/*
+        User[] actualUser = gson.fromJson(response.getBody().asString(), User[].class);
+        Assert.assertEquals(actualUser[0], expectedUser);
+*/
+        Assert.assertEquals(actualUsersList.get(0), expectedUser);
     }
 }

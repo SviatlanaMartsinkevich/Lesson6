@@ -1,6 +1,6 @@
 package tests.api;
 
-import baseEntity.BaseApiTest;
+import baseEntities.BaseApiTest;
 import core.ReadProperties;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
