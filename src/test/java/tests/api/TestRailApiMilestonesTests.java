@@ -25,18 +25,16 @@ public class TestRailApiMilestonesTests extends baseEntity.BaseApiTest {
 
         projectID = given()
                 .body(project, ObjectMapperType.GSON)
-                .log().body()
                 .when()
                 .post(Endpoints.ADD_PROJECT)
                 .then()
-                .log().body()
+                .body("name", is(project.getName()))
                 .statusCode(HttpStatus.SC_OK)
                 .extract().jsonPath().get("id");
     }
 
-    @Test(dependsOnMethods = "addProjectTest", priority = 0)
+    @Test
     public void addMilestoneTest() {
-
         Milestone milestone = Milestone.builder()
                 .name("New milestone_01")
                 .description("just milestone")
@@ -48,14 +46,13 @@ public class TestRailApiMilestonesTests extends baseEntity.BaseApiTest {
                 .when()
                 .post(Endpoints.ADD_MILESTONE)
                 .then()
-                .log().body()
                 .body("name", is(milestone.getName()))
                 .body("description", is(milestone.getDescription()))
                 .statusCode(HttpStatus.SC_OK)
                 .extract().jsonPath().get("id");
     }
 
-    @Test(priority = 1)
+    @Test
     public void getMilestonesTest() {
         given()
                 .pathParam("project_id", projectID)
@@ -66,7 +63,7 @@ public class TestRailApiMilestonesTests extends baseEntity.BaseApiTest {
                 .statusCode(HttpStatus.SC_OK);
     }
 
-    @Test(priority = 2)
+    @Test(priority = 1)
     public void updateMilestoneTest() {
         Milestone milestoneUPD = Milestone.builder()
                 .name("New milestone_02")
@@ -81,21 +78,19 @@ public class TestRailApiMilestonesTests extends baseEntity.BaseApiTest {
                 .when()
                 .post(Endpoints.UPDATE_MILESTONE)
                 .then()
-                .log().body()
                 .body("name", is(milestoneUPD.getName()))
                 .body("description", equalTo(milestoneUPD.getDescription()))
                 .body("is_completed", equalTo(milestoneUPD.isCompleted()))
                 .statusCode(HttpStatus.SC_OK);
     }
 
-    @Test(priority = 3)
+    @Test(priority = 2)
     public void deleteMilestoneTest() {
         given()
                 .pathParam("milestone_id", milestoneID)
                 .when()
                 .post(Endpoints.DELETE_MILESTONE)
                 .then()
-                .log().body()
                 .statusCode(HttpStatus.SC_OK);
     }
 }

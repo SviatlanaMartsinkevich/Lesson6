@@ -2,6 +2,7 @@ package tests.api;
 
 import enums.ProjectType;
 import io.restassured.mapper.ObjectMapperType;
+import io.restassured.response.Response;
 import models.Cases;
 import models.ProjectBuilder;
 import models.Section;
@@ -10,62 +11,57 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 import utils.Endpoints;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import static io.restassured.RestAssured.given;
 
 public class TestRailApiCasesTest extends baseEntity.BaseApiTest {
 
     int projectID;
-    int caseID;
+    int caseID1;
+    int caseID2;
     int sectionID;
-//    int suiteID = 5;
-    List<Integer> caseIDs = new ArrayList<>();
+    int suiteID;
 
     @Test
     public void addProjectTest() {
         ProjectBuilder project = ProjectBuilder.builder()
                 .name("New project_1")
-                .typeOfProject(ProjectType.SINGLE_SUITE_BASELINES)
+                .typeOfProject(ProjectType.SINGLE_SUITE_MODE)
                 .build();
 
         projectID = given()
                 .body(project, ObjectMapperType.GSON)
-                .log().body()
                 .when()
                 .post(Endpoints.ADD_PROJECT)
                 .then()
-                .log().body()
                 .statusCode(HttpStatus.SC_OK)
                 .extract().jsonPath().get("id");
     }
 
-    @Test(dependsOnMethods = "addProjectTest")
+    @Test
     public void addSectionTest() {
         Section section = Section.builder()
                 .name("Section_1")
                 .description("New section")
                 .build();
 
-        sectionID = given()
+        Response response = given()
                 .pathParam("project_id", projectID)
                 .body(section, ObjectMapperType.GSON)
-                .log().body()
                 .when()
                 .post(Endpoints.ADD_SECTION)
                 .then()
-                .log().body()
-//                .statusCode(HttpStatus.SC_OK)
-                .extract().jsonPath().get("id");
+                .statusCode(HttpStatus.SC_OK)
+                .extract().response();
+
+        sectionID = response.getBody().jsonPath().get("id");
+        suiteID = response.getBody().jsonPath().get("suite_id");
     }
 
-    @Test
-    public void addCaseTest() {
+    @Test(dependsOnMethods = "addSectionTest")
+    public void addCase1Test() {
         Cases expectedCase = Cases.builder()
                 .title("New case_1")
-                .sectionID(1)
+                .sectionID(sectionID)
                 .templateID(1)
                 .typeID(2)
                 .priorityID(1)
@@ -73,69 +69,66 @@ public class TestRailApiCasesTest extends baseEntity.BaseApiTest {
                 .refs("somethings else")
                 .build();
 
-        caseID = given()
+        caseID1 = given()
                 .pathParam("section_id", sectionID)
                 .body(expectedCase, ObjectMapperType.GSON)
                 .post(Endpoints.ADD_CASE)
                 .then()
-                .log().body()
+                .statusCode(HttpStatus.SC_OK)
+                .extract().jsonPath().get("id");
+    }
+
+    @Test(dependsOnMethods = "addSectionTest")
+    public void addCase2Test() {
+        Cases expectedCase = Cases.builder()
+                .title("New case_2")
+                .sectionID(sectionID)
+                .templateID(1)
+                .typeID(2)
+                .priorityID(1)
+                .estimate("5m")
+                .refs("somethings else")
+                .build();
+
+        caseID2 = given()
+                .pathParam("section_id", sectionID)
+                .body(expectedCase, ObjectMapperType.GSON)
+                .post(Endpoints.ADD_CASE)
+                .then()
                 .statusCode(HttpStatus.SC_OK)
                 .extract().jsonPath().get("id");
     }
 
     @Test
-    public void getSectionTest() {
-        given()
-                .pathParam("section_id", sectionID)
-                .when()
-                .get(Endpoints.GET_SECTION)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK);
-    }
-
-    @Test(dependsOnMethods = "addCaseTest")
     public void getCaseTest() {
         given()
-                .pathParam("case_id", caseID)
+                .pathParam("case_id", caseID1)
                 .when()
                 .get(Endpoints.GET_CASE)
                 .then()
                 .log().body()
                 .statusCode(HttpStatus.SC_OK);
     }
-    @Test()
-    public void getCasesTest() {
-        given()
-                .pathParam("project_id", projectID)
-//                .pathParam( "suite_id", suiteID)
-                .when()
-                .get(Endpoints.GET_CASES)
-                .then()
-                .log().body()
-                .statusCode(HttpStatus.SC_OK);
-    }
 
-    @Test(dependsOnMethods = "addCaseTest")
+    @Test(priority = 1)
     public void updateCaseTest() {
         Cases expectedCase = Cases.builder()
-                .sectionID(1)
+                .sectionID(sectionID)
                 .title("update case")
                 .templateID(1)
                 .typeID(5)
                 .priorityID(1)
-                .estimate("5m")
+                .estimate("4m")
                 .milestoneID(0)
                 .suiteID(3)
                 .refs("somethings else")
                 .build();
 
         Cases actualCase = given()
-                .pathParam("case_id", caseID)
+                .pathParam("case_id", caseID1)
                 .body(expectedCase, ObjectMapperType.GSON)
                 .post(Endpoints.UPDATE_CASE)
                 .then()
-                .log().body()
                 .assertThat()
                 .statusCode(HttpStatus.SC_OK)
                 .extract()
@@ -145,28 +138,28 @@ public class TestRailApiCasesTest extends baseEntity.BaseApiTest {
     }
 
     @Test
-    public void  moveCasesToSectionTest() {
+    public void moveCasesToSectionTest() {
         Cases expectedCase = Cases.builder()
-                .sectionID(1)
-                .suiteID(1)
+                .sectionID(sectionID)
+                .suiteID(suiteID)
+                .casesIDS(new int[]{caseID1, caseID2})
                 .build();
 
-        Cases actualCase = given()
-                .pathParam("section_id", sectionID)
+        given()
+                .pathParam("section_id", 1)
                 .body(expectedCase, ObjectMapperType.GSON)
-                .body(caseIDs)
                 .post(Endpoints.MOVE_CASES_TO_SECTION)
                 .then()
-                .log().body()
-                .assertThat()
-                .statusCode(HttpStatus.SC_OK)
-                .extract()
-                .as(Cases.class);
-
-        Assert.assertEquals(actualCase, expectedCase);
+                .statusCode(HttpStatus.SC_OK);
     }
 
-    public void addToGetCaseIDs() {
-        caseIDs.add(caseID);
+    @Test(priority = 2)
+    public void deleteCaseTest() {
+        given()
+                .pathParam("case_id", caseID1)
+                .when()
+                .post(Endpoints.DELETE_CASE)
+                .then()
+                .statusCode(HttpStatus.SC_OK);
     }
 }

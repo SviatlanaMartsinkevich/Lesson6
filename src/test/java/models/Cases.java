@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 import lombok.Builder;
 import lombok.Data;
 
+import java.util.ArrayList;
+
 @Data
 @Builder
 public class Cases {
@@ -22,4 +24,6 @@ public class Cases {
     private String estimate;
     @SerializedName(value = "suite_id")
     private int suiteID;
+    @SerializedName(value = "case_ids")
+    private int[] casesIDS;
 }

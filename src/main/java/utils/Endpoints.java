@@ -13,6 +13,7 @@ public class Endpoints {
     public static final String UPDATE_MILESTONE = "/index.php?/api/v2/update_milestone/{milestone_id}";
     public static final String DELETE_MILESTONE = "/index.php?/api/v2/delete_milestone/{milestone_id}";
     public static final String GET_SECTION = "/index.php?/api/v2/get_section/{section_id}";
+    public static final String GET_SECTIONS = "/index.php?/api/v2/get_sections/{project_id}&suite_id={suite_id}";
     public static final String ADD_SECTION = "/index.php?/api/v2/add_section/{project_id}";
     public static final String GET_CASE = "/index.php?/api/v2/get_case/{case_id}";
     public static final String GET_CASES = "/index.php?/api/v2/get_cases/{project_id}&suite_id={suite_id}";
