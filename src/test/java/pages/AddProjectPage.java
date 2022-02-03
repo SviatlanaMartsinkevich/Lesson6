@@ -1,8 +1,6 @@
 package pages;
 
 import baseEntities.BasePage;
-import core.ReadProperties;
-import enums.ProjectType;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -64,7 +62,7 @@ public class AddProjectPage extends BasePage {
     }
 
     public WebElement getType(int type) {
-         return driver.findElement(By.xpath(typeRadioButtonSelector.replace("replace", String.valueOf(type))));
+        return driver.findElement(By.xpath(typeRadioButtonSelector.replace("replace", String.valueOf(type))));
     }
 }
 

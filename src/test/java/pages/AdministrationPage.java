@@ -18,7 +18,6 @@ public class AdministrationPage extends BasePage {
     protected By dataManagementNavigationSelector = By.id("navigation-sub-subscription");
     protected By siteSettingNavigationSelector = By.id("navigation-sub-sitesettings");
 
-
     public AdministrationPage(WebDriver driver) {
         super(driver);
     }
@@ -37,11 +36,31 @@ public class AdministrationPage extends BasePage {
         return waits.waitForVisibility(PAGE_OPENED_IDENTIFIER).isDisplayed();
     }
 
-    public WebElement getOverviewNavigationButton() { return driver.findElement(overviewNavigationSelector);}
-    public WebElement getProjectsNavigationButton() { return driver.findElement(projectsNavigationSelector);}
-    public WebElement getUsersNavigationButton() { return driver.findElement(usersNavigationSelector);}
-    public WebElement getCustomizationNavigationButton() { return driver.findElement(customizationNavigationSelector);}
-    public WebElement getIntegrationNavigationButton() { return driver.findElement(integrationNavigationSelector);}
-    public WebElement getDataManagementNavigationButton() { return driver.findElement(dataManagementNavigationSelector);}
-    public WebElement getSiteSettingNavigationButton() { return driver.findElement(siteSettingNavigationSelector);}
+    public WebElement getOverviewNavigationButton() {
+        return driver.findElement(overviewNavigationSelector);
+    }
+
+    public WebElement getProjectsNavigationButton() {
+        return driver.findElement(projectsNavigationSelector);
+    }
+
+    public WebElement getUsersNavigationButton() {
+        return driver.findElement(usersNavigationSelector);
+    }
+
+    public WebElement getCustomizationNavigationButton() {
+        return driver.findElement(customizationNavigationSelector);
+    }
+
+    public WebElement getIntegrationNavigationButton() {
+        return driver.findElement(integrationNavigationSelector);
+    }
+
+    public WebElement getDataManagementNavigationButton() {
+        return driver.findElement(dataManagementNavigationSelector);
+    }
+
+    public WebElement getSiteSettingNavigationButton() {
+        return driver.findElement(siteSettingNavigationSelector);
+    }
 }

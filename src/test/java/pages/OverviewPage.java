@@ -1,12 +1,9 @@
 package pages;
 
 import baseEntities.BasePage;
-import core.ReadProperties;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.testng.Assert;
 
 public class OverviewPage extends BasePage {
     private static String ENDPOINT = "/dashboard/overview/{}";
@@ -116,14 +113,4 @@ public class OverviewPage extends BasePage {
     public WebElement getMessage() {
         return driver.findElement(messageSelector);
     }
-
-
-//    public void findProject() {
-//        try {
-//            getProjectFind().click();
-//        } catch (NoSuchElementException nsex) {
-//            System.out.println("Project " + " '" + ReadProperties.getNameProject() + "' " + " not found");
-//        }
-//    }
-
 }

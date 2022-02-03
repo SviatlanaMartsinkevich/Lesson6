@@ -1,20 +1,18 @@
 package steps;
 
 import baseEntities.BaseStep;
-import enums.ProjectType;
 import models.Project;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import pages.AddProjectPage;
 import pages.DashboardPage;
 import pages.OverviewPage;
-import utils.Randomization;
+import pages.ProjectPage;
 
 public class ProjectSteps extends BaseStep {
     private AddProjectPage addProjectPage;
     private DashboardPage dashboardPage;
     private OverviewPage overviewPage;
-
+    private ProjectPage projectPage;
 
     public ProjectSteps(WebDriver driver) {
         super(driver);
@@ -29,16 +27,15 @@ public class ProjectSteps extends BaseStep {
         addProjectPage.getAddProjectButton().click();
     }
 
-
-    public void updateProject(Project addProject, Project updateProject) {
+    public void updateProject(Project project, Project updateProject) {
         dashboardPage = new DashboardPage(driver);
-        dashboardPage.findProject(addProject.getName()).click();
+        dashboardPage.getFindProject(project.getName()).click();
         overviewPage = new OverviewPage(driver);
         overviewPage.getEditButton().click();
         addProjectPage = new AddProjectPage(driver);
-        addProjectPage.getNameProjectField().sendKeys(Keys.CONTROL + "a");
+        addProjectPage.getNameProjectField().clear();
         addProjectPage.getNameProjectField().sendKeys(updateProject.getName());
-        addProjectPage.getAnnouncementField().sendKeys(Keys.CONTROL + "a");
+        addProjectPage.getAnnouncementField().clear();
         addProjectPage.getAnnouncementField().sendKeys(updateProject.getAnnouncement());
         addProjectPage.getIsShowAnnouncementField().click();
         addProjectPage.getType(updateProject.getTypeOfProject()).click();
@@ -46,7 +43,10 @@ public class ProjectSteps extends BaseStep {
         addProjectPage.getAddProjectButton().click();
     }
 
-    public void deleteProject(Project project) {
-
+    public void deleteProject(Project updateProject) {
+        projectPage = new ProjectPage(driver);
+        projectPage.getDeleteProjectButton(updateProject.getName()).click();
+        projectPage.getDeleteAgree().click();
+        projectPage.getAgreeButton().click();
     }
 }

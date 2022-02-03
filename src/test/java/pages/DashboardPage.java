@@ -33,12 +33,16 @@ public class DashboardPage extends BasePage {
     public boolean isPageOpened() {
         return waits.waitForVisibility(PAGE_OPENED_IDENTIFIER).isDisplayed();
     }
+
     public WebElement getAddProjectButton() {
         return driver.findElement(addProjectButtonSelector);
     }
-    public WebElement getAdministratorButton() { return driver.findElement(administratorButtonSelector);}
 
-    public WebElement findProject(String addProject) {
-        return driver.findElement(By.xpath(projectFind.replace("replace", String.valueOf(addProject))));
+    public WebElement getAdministratorButton() {
+        return driver.findElement(administratorButtonSelector);
+    }
+
+    public WebElement getFindProject(String nameProject) {
+        return driver.findElement(By.xpath(projectFind.replace("replace", String.valueOf(nameProject))));
     }
 }
