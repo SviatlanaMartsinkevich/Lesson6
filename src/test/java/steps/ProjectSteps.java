@@ -46,7 +46,7 @@ public class ProjectSteps extends BaseStep {
     public void deleteProject(Project updateProject) {
         projectPage = new ProjectPage(driver);
         projectPage.getDeleteProjectButton(updateProject.getName()).click();
-        projectPage.getDeleteAgree().click();
+        projectPage.getDeleteCheckbox().click();
         projectPage.getAgreeButton().click();
     }
 }

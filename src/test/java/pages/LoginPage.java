@@ -40,10 +40,4 @@ public class LoginPage extends BasePage {
     public WebElement getLoginButton() {
         return driver.findElement(loginSelector);
     }
-
-    public void login(User user) {
-        getEmailField().sendKeys(user.getEmail());
-        getPasswordField().sendKeys(user.getPassword());
-        getLoginButton().click();
-    }
 }

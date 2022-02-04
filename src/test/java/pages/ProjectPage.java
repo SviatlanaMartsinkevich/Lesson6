@@ -14,7 +14,7 @@ public class ProjectPage extends BasePage {
     private static By returnToDashboardPageButtonSelector = By.id("navigation-dashboard");
     private static String projectLineFind = "//*[text()='replace']/../..";
     private static By deleteProjectButtonSelector = By.xpath("//*[@class='icon-small-delete']");
-    private static By deleteAgreeSelector = By.xpath("(//*[@class = 'dialog-confirm-busy']/..)//input");
+    private static By deleteCheckboxSelector = By.xpath("(//*[@class = 'dialog-confirm-busy']/..)//input");
     private static By agreeButtonSelector = By.xpath("//div[@id='deleteDialog']//a[contains(@class,'button button-ok')]");
     private static By cancelButtonSelector = By.xpath("//div[@id='deleteDialog']//a[contains(@class,'button button-cancel')]");
     private static By messageProjectDeletedSelector = By.xpath("//*[. = 'Successfully deleted the project.']");
@@ -41,8 +41,8 @@ public class ProjectPage extends BasePage {
         return driver.findElement(returnToDashboardPageButtonSelector);
     }
 
-    public WebElement getDeleteAgree() {
-        return driver.findElement(deleteAgreeSelector);
+    public WebElement getDeleteCheckbox() {
+        return driver.findElement(deleteCheckboxSelector);
     }
 
     public WebElement getAgreeButton() {

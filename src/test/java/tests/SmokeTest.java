@@ -14,21 +14,13 @@ public class SmokeTest extends BaseTest {
     Project updateProject;
 
     @Test
-    public void loginTest() {
+    public void addProjectTest() throws InterruptedException {
         User user = new User()
                 .setEmail(ReadProperties.getUsername())
                 .setPassword(ReadProperties.getPassword());
 
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login(user);
+        loginStep.login(user);
 
-        DashboardPage dashboardPage = new DashboardPage(driver);
-
-        Assert.assertTrue(dashboardPage.getAddProjectButton().isDisplayed());
-    }
-
-    @Test(priority = 1)
-    public void addProjectTest() throws InterruptedException {
         DashboardPage dashboardPage = new DashboardPage(driver);
         dashboardPage.getAddProjectButton().click();
 
@@ -42,8 +34,14 @@ public class SmokeTest extends BaseTest {
         projectPage.getReturnToDashboardPageButton().click();
     }
 
-    @Test(priority = 1)
+    @Test(dependsOnMethods = "addProjectTest")
     public void updateProjectTest() throws InterruptedException {
+        User user = new User()
+                .setEmail(ReadProperties.getUsername())
+                .setPassword(ReadProperties.getPassword());
+
+        loginStep.login(user);
+
         setupProjects();
         projectSteps.updateProject(addProject, updateProject);
 
@@ -56,8 +54,14 @@ public class SmokeTest extends BaseTest {
         Assert.assertTrue(dashboardPage.getAddProjectButton().isDisplayed());
     }
 
-    @Test(priority = 2)
+    @Test(dependsOnMethods = "updateProjectTest")
     public void deleteProjectTest() throws InterruptedException {
+        User user = new User()
+                .setEmail(ReadProperties.getUsername())
+                .setPassword(ReadProperties.getPassword());
+
+        loginStep.login(user);
+
         DashboardPage dashboardPage = new DashboardPage(driver);
         dashboardPage.getAdministratorButton().click();
 
