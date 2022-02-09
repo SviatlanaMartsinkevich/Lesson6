@@ -1,43 +1,24 @@
 package pages;
 
-import baseEntities.BasePage;
-import models.User;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-public class LoginPage extends BasePage {
-    private static String ENDPOINT = "/auth/login";
+import static com.codeborne.selenide.Selenide.$;
 
-    private static final By PAGE_OPENED_IDENTIFIER = By.id("button_primary");
+public class LoginPage {
+    private final By emailSelector = By.id("name");
+    private final By passwordSelector = By.id("password");
+    private final By loginSelector = By.id("button_primary");
 
-    protected By emailSelector = By.id("name");
-    protected By passwordSelector = By.id("password");
-    protected By loginSelector = By.id("button_primary");
-
-    public LoginPage(WebDriver driver) {
-        super(driver);
+    public SelenideElement getEmailField() {
+        return $(emailSelector);
     }
 
-    @Override
-    protected void openPage() {
-        driver.get(BASE_URL + ENDPOINT);
+    public SelenideElement getPasswordField() {
+        return $(passwordSelector);
     }
 
-    @Override
-    protected boolean isPageOpened() {
-        return waits.waitForVisibility(PAGE_OPENED_IDENTIFIER).isDisplayed();
-    }
-
-    public WebElement getEmailField() {
-        return driver.findElement(emailSelector);
-    }
-
-    public WebElement getPasswordField() {
-        return driver.findElement(passwordSelector);
-    }
-
-    public WebElement getLoginButton() {
-        return driver.findElement(loginSelector);
+    public SelenideElement getLoginButton() {
+        return $(loginSelector);
     }
 }

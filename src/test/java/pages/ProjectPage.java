@@ -1,71 +1,49 @@
 package pages;
 
-import baseEntities.BasePage;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-public class ProjectPage extends BasePage {
-    private static String ENDPOINT = "/admin/projects/overview";
+import static com.codeborne.selenide.Selenide.$;
 
-    private static final By PAGE_OPENED_IDENTIFIER = By.xpath("//*[@class = 'content-header-title page_title display-inline-block']");
-
+public class ProjectPage {
     private static String projectFind = "//*[text()='replace']";
-    private static By returnToDashboardPageButtonSelector = By.id("navigation-dashboard");
+    private final By returnToDashboardPageButtonSelector = By.id("navigation-dashboard");
     private static String projectLineFind = "//*[text()='replace']/../..";
-    private static By deleteProjectButtonSelector = By.xpath("//*[@class='icon-small-delete']");
-    private static By deleteCheckboxSelector = By.xpath("(//*[@class = 'dialog-confirm-busy']/..)//input");
-    private static By agreeButtonSelector = By.xpath("//div[@id='deleteDialog']//a[contains(@class,'button button-ok')]");
-    private static By cancelButtonSelector = By.xpath("//div[@id='deleteDialog']//a[contains(@class,'button button-cancel')]");
-    private static By messageProjectDeletedSelector = By.xpath("//*[. = 'Successfully deleted the project.']");
+    private final By deleteProjectButtonSelector = By.xpath("//*[@class='icon-small-delete']");
+    private final By deleteCheckboxSelector = By.xpath("(//*[@class = 'dialog-confirm-busy']/..)//input");
+    private final By agreeButtonSelector = By.xpath("//div[@id='deleteDialog']//a[contains(@class,'button button-ok')]");
+    private final By cancelButtonSelector = By.xpath("//div[@id='deleteDialog']//a[contains(@class,'button button-cancel')]");
+    private final By messageProjectDeletedSelector = By.xpath("//*[. = 'Successfully deleted the project.']");
 
-    public ProjectPage(WebDriver driver) {
-        super(driver);
+    public SelenideElement getReturnToDashboardPageButton() {
+        return $(returnToDashboardPageButtonSelector);
     }
 
-    public ProjectPage(WebDriver driver, boolean openPageByUrl) {
-        super(driver, openPageByUrl);
+    public SelenideElement getDeleteCheckbox() {
+        return $(deleteCheckboxSelector);
     }
 
-    @Override
-    protected void openPage() {
-        driver.get(BASE_URL + ENDPOINT);
+    public SelenideElement getAgreeButton() {
+        return $(agreeButtonSelector);
     }
 
-    @Override
-    public boolean isPageOpened() {
-        return waits.waitForVisibility(PAGE_OPENED_IDENTIFIER).isDisplayed();
+    public SelenideElement getCancelButton() {
+        return $(cancelButtonSelector);
     }
 
-    public WebElement getReturnToDashboardPageButton() {
-        return driver.findElement(returnToDashboardPageButtonSelector);
+    public SelenideElement getMessageProjectDeleted() {
+        return $(messageProjectDeletedSelector);
     }
 
-    public WebElement getDeleteCheckbox() {
-        return driver.findElement(deleteCheckboxSelector);
+    public SelenideElement getDeleteProjectButton(String nameProject) {
+        return $(getFindLineProject(nameProject).find(deleteProjectButtonSelector));
     }
 
-    public WebElement getAgreeButton() {
-        return driver.findElement(agreeButtonSelector);
+    public SelenideElement getFindProject(String nameProject) {
+        return $(By.xpath(projectFind.replace("replace", String.valueOf(nameProject))));
     }
 
-    public WebElement getCancelButton() {
-        return driver.findElement(cancelButtonSelector);
-    }
-
-    public WebElement getMessageProjectDeleted() {
-        return driver.findElement(messageProjectDeletedSelector);
-    }
-
-    public WebElement getDeleteProjectButton(String nameProject) {
-        return getFindLineProject(nameProject).findElement(deleteProjectButtonSelector);
-    }
-
-    public WebElement getFindProject(String nameProject) {
-        return driver.findElement(By.xpath(projectFind.replace("replace", String.valueOf(nameProject))));
-    }
-
-    public WebElement getFindLineProject(String nameProject) {
-        return driver.findElement(By.xpath(projectLineFind.replace("replace", String.valueOf(nameProject))));
+    public SelenideElement getFindLineProject(String nameProject) {
+        return $(By.xpath(projectLineFind.replace("replace", String.valueOf(nameProject))));
     }
 }

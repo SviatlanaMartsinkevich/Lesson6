@@ -1,32 +1,32 @@
 package baseEntities;
 
+import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.logevents.SelenideLogger;
 import core.ReadProperties;
-import org.openqa.selenium.WebDriver;
+import io.qameta.allure.selenide.AllureSelenide;
 import org.testng.annotations.*;
 import steps.LoginStep;
-import steps.ProjectSteps;
+import steps.ProjectStep;
 
-@Listeners(Listener.class)
 public class BaseTest {
-    protected WebDriver driver;
-    protected BrowsersService browsersService;
-    protected Waits waits;
-    protected ProjectSteps projectSteps;
+    protected ProjectStep projectStep;
     protected LoginStep loginStep;
 
-    @BeforeMethod
+    @BeforeSuite
     public void setUp() {
-        browsersService = new BrowsersService();
-        driver = browsersService.getDriver();
-        waits = new Waits(driver);
-        projectSteps = new ProjectSteps(driver);
-        loginStep = new LoginStep(driver);
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide());
 
-        driver.get(ReadProperties.getUrl());
-    }
+        SelenideLogger.addListener("AllureSelenide", new AllureSelenide()
+                .screenshots(false)
+                .savePageSource(true)
+        );
 
-    @AfterMethod
-    public void closePage() {
-        driver.quit();
+        org.apache.log4j.BasicConfigurator.configure();
+
+        Configuration.baseUrl = ReadProperties.getUrl();
+        Configuration.browser = ReadProperties.getBrowserName();
+        Configuration.startMaximized = false;
+        Configuration.fastSetValue = true;
+        Configuration.timeout = 8000;
     }
 }

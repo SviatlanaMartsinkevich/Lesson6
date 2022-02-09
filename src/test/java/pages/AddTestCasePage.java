@@ -1,21 +1,38 @@
 package pages;
 
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
 
-public class AddTestCasePage {
-    protected By titleFieldSelector = By.id("title");
-    protected By estimateFieldSelector = By.id("estimate");
-    protected By referencesFieldSelector = By.id("refs");
-    protected By preconditionsFieldSelector = By.id("custom_preconds_display");
-    protected By stepsFieldSelector = By.id("custom_steps_display");
-    protected By expectedResultFieldSelector = By.id("custom_steps_display");
-    protected By addTestCaseButtonSelector = By.id("accept");
-    protected By addAndNextButtonSelector = By.id("accept_and_next");
-    protected By cancelButtonSelector = By.xpath("//a[contains(@class, 'leave case-form-cancel')]");
-    protected By typeOfSectionFieldSelector = By.xpath("//span[. = 'Test Cases']");
-    protected By typeOfTemplateFieldSelector = By.xpath("//span[. = 'Test Case (Text)']");
-    protected By typeFieldSelector = By.xpath("//span[. = 'Other']");
-    protected By priorityTypeFieldSelector = By.xpath("//span[. = 'Medium']");
-    protected By automationTypeFieldSelector = By.xpath("//a[@class = 'chzn-single']//span[. = 'None']");
+import static com.codeborne.selenide.Selenide.$;
 
+public class AddTestCasePage {
+    private final String titleFieldSelector = "#title";
+    private final String estimateFieldSelector = "#estimate";
+    private final String referencesFieldSelector = "#refs";
+    private final String preconditionsFieldSelector = "#custom_preconds_display";
+    private final String stepsFieldSelector = "#custom_steps_display";
+    private final String expectedResultFieldSelector = "#custom_steps_display";
+    private final String addTestCaseButtonSelector = "#accept";
+    private final String addAndNextButtonSelector = "#accept_and_next";
+    private final By cancelButtonSelector = By.xpath("//a[contains(@class, 'leave case-form-cancel')]");
+    private final By typeOfSectionFieldSelector = By.xpath("//span[. = 'Test Cases']");
+    private final By typeOfTemplateFieldSelector = By.xpath("//span[. = 'Test Case (Text)']");
+    private final By typeFieldSelector = By.xpath("//span[. = 'Other']");
+    private final By priorityTypeFieldSelector = By.xpath("//span[. = 'Medium']");
+    private final By automationTypeFieldSelector = By.xpath("//a[@class = 'chzn-single']//span[. = 'None']");
+
+    public SelenideElement getTitleField() { return $(titleFieldSelector);}
+    public SelenideElement getEstimateField() { return $(estimateFieldSelector);}
+    public SelenideElement getReferencesFieldSelector() { return $(referencesFieldSelector);}
+    public SelenideElement getPreconditionsField() { return $(preconditionsFieldSelector);}
+    public SelenideElement getStepsField() { return $(stepsFieldSelector);}
+    public SelenideElement getExpectedResultField() { return $(expectedResultFieldSelector);}
+    public SelenideElement getAddTestCaseButton() { return $(addTestCaseButtonSelector);}
+    public SelenideElement getAddAndNextButton() { return $(addAndNextButtonSelector);}
+    public SelenideElement getCancelButton() { return $(cancelButtonSelector);}
+    public SelenideElement getTypeOfSectionField() { return $(typeOfSectionFieldSelector);}
+    public SelenideElement getTypeOfTemplateField() { return $(typeOfTemplateFieldSelector);}
+    public SelenideElement getTypeField() { return $(typeFieldSelector);}
+    public SelenideElement getPriorityTypeField() { return $(priorityTypeFieldSelector);}
+    public SelenideElement getAutomationTypeField() { return $(automationTypeFieldSelector);}
 }

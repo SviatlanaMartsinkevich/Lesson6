@@ -1,116 +1,94 @@
 package pages;
 
-import baseEntities.BasePage;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-public class OverviewPage extends BasePage {
-    private static String ENDPOINT = "/dashboard/overview/{}";
+import static com.codeborne.selenide.Selenide.$;
 
-    private static final By PAGE_OPENED_IDENTIFIER = By.id("chart-line-fc");
+public class OverviewPage {
+    private final By editButtonSelector = By.xpath("//a[text() = 'Edit']");
+    private final By reportsButtonSelector = By.xpath("//a[text() = 'Reports']");
+    private final By milestonesSidebarSelector = By.id("sidebar-milestones-overview");
+    private final By addMilestonesSidebarSelector = By.id("sidebar-milestones-add");
+    private final By viewAllMilestonesSidebarSelector = By.id("sidebar-milestones-viewall");
+    private final By testRunsSidebarSelector = By.id("sidebar-runs-overview");
+    private final By addTestRunsSidebarSelector = By.id("sidebar-runs-overview");
+    private final By viewAllTestRunsSidebarSelector = By.id("sidebar-runs-overview");
+    private final By testCasesSidebarSelector = By.id("sidebar-cases-overview");
+    private final By addTestCasesSidebarSelector = By.id("sidebar-cases-add");
+    private final By viewAllTestCasesSidebarSelector = By.id("sidebar-suites-viewall");
+    private final By milestoneNavigationSelector = By.id("navigation-overview-viewmilestones");
+    private final By addMilestoneNavigationSelector = By.id("navigation-overview-addmilestones");
+    private final By testRunsNavigationSelector = By.id("navigation-overview-runs");
+    private final By addTestRunsNavigationSelector = By.id("navigation-overview-addrunssuite");
+    private final By returnToDashboardButtonSelector = By.id("navigation-dashboard-top");
+    private final By messageSelector = By.xpath("//div[. = 'Successfully updated the project.']");
 
-    protected By editButtonSelector = By.xpath("//a[text() = 'Edit']");
-    protected By reportsButtonSelector = By.xpath("//a[text() = 'Reports']");
-    protected By milestonesSidebarSelector = By.id("sidebar-milestones-overview");
-    protected By addMilestonesSidebarSelector = By.id("sidebar-milestones-add");
-    protected By viewAllMilestonesSidebarSelector = By.id("sidebar-milestones-viewall");
-    protected By testRunsSidebarSelector = By.id("sidebar-runs-overview");
-    protected By addTestRunsSidebarSelector = By.id("sidebar-runs-overview");
-    protected By viewAllTestRunsSidebarSelector = By.id("sidebar-runs-overview");
-    protected By testCasesSidebarSelector = By.id("sidebar-cases-overview");
-    protected By addTestCasesSidebarSelector = By.id("sidebar-cases-add");
-    protected By viewAllTestCasesSidebarSelector = By.id("sidebar-suites-viewall");
-    protected By milestoneNavigationSelector = By.id("navigation-overview-viewmilestones");
-    protected By addMilestoneNavigationSelector = By.id("navigation-overview-addmilestones");
-    protected By testRunsNavigationSelector = By.id("navigation-overview-runs");
-    protected By addTestRunsNavigationSelector = By.id("navigation-overview-addrunssuite");
-    protected By returnToDashboardButtonSelector = By.id("navigation-dashboard-top");
-    protected By messageSelector = By.xpath("//div[. = 'Successfully updated the project.']");
-
-    public OverviewPage(WebDriver driver) {
-        super(driver);
+    public SelenideElement getEditButton() {
+        return $(editButtonSelector);
     }
 
-    public OverviewPage(WebDriver driver, boolean openPageByUrl) {
-        super(driver, openPageByUrl);
+    public SelenideElement getReportsButton() {
+        return $(reportsButtonSelector);
     }
 
-    @Override
-    protected void openPage() {
-        driver.get(BASE_URL + ENDPOINT);
+    public SelenideElement getMilestonesSidebar() {
+        return $(milestonesSidebarSelector);
     }
 
-    @Override
-    public boolean isPageOpened() {
-        return waits.waitForVisibility(PAGE_OPENED_IDENTIFIER).isDisplayed();
+    public SelenideElement getAddMilestonesSidebar() {
+        return $(addMilestonesSidebarSelector);
     }
 
-    public WebElement getEditButton() {
-        return driver.findElement(editButtonSelector);
+    public SelenideElement getViewAllMilestonesSidebar() {
+        return $(viewAllMilestonesSidebarSelector);
     }
 
-    public WebElement getReportsButton() {
-        return driver.findElement(reportsButtonSelector);
+    public SelenideElement getTestRunsSidebar() {
+        return $(testRunsSidebarSelector);
     }
 
-    public WebElement getMilestonesSidebar() {
-        return driver.findElement(milestonesSidebarSelector);
+    public SelenideElement getAddTestRunsSidebar() {
+        return $(addTestRunsSidebarSelector);
     }
 
-    public WebElement getAddMilestonesSidebar() {
-        return driver.findElement(addMilestonesSidebarSelector);
+    public SelenideElement getViewAllTestRunsSidebar() {
+        return $(viewAllTestRunsSidebarSelector);
     }
 
-    public WebElement getViewAllMilestonesSidebar() {
-        return driver.findElement(viewAllMilestonesSidebarSelector);
+    public SelenideElement getTestCasesSidebar() {
+        return $(testCasesSidebarSelector);
     }
 
-    public WebElement getTestRunsSidebar() {
-        return driver.findElement(testRunsSidebarSelector);
+    public SelenideElement getAddTestCasesSidebar() {
+        return $(addTestCasesSidebarSelector);
     }
 
-    public WebElement getAddTestRunsSidebar() {
-        return driver.findElement(addTestRunsSidebarSelector);
+    public SelenideElement getViewAllTestCasesSidebar() {
+        return $(viewAllTestCasesSidebarSelector);
     }
 
-    public WebElement getViewAllTestRunsSidebar() {
-        return driver.findElement(viewAllTestRunsSidebarSelector);
+    public SelenideElement getMilestoneNavigation() {
+        return $(milestoneNavigationSelector);
     }
 
-    public WebElement getTestCasesSidebar() {
-        return driver.findElement(testCasesSidebarSelector);
+    public SelenideElement getAddMilestoneNavigation() {
+        return $(addMilestoneNavigationSelector);
     }
 
-    public WebElement getAddTestCasesSidebar() {
-        return driver.findElement(addTestCasesSidebarSelector);
+    public SelenideElement getTestRunsNavigation() {
+        return $(testRunsNavigationSelector);
     }
 
-    public WebElement getViewAllTestCasesSidebar() {
-        return driver.findElement(viewAllTestCasesSidebarSelector);
+    public SelenideElement getAddTestRunsNavigation() {
+        return $(addTestRunsNavigationSelector);
     }
 
-    public WebElement getMilestoneNavigation() {
-        return driver.findElement(milestoneNavigationSelector);
+    public SelenideElement getReturnToDashboardButton() {
+        return $(returnToDashboardButtonSelector);
     }
 
-    public WebElement getAddMilestoneNavigation() {
-        return driver.findElement(addMilestoneNavigationSelector);
-    }
-
-    public WebElement getTestRunsNavigation() {
-        return driver.findElement(testRunsNavigationSelector);
-    }
-
-    public WebElement getAddTestRunsNavigation() {
-        return driver.findElement(addTestRunsNavigationSelector);
-    }
-
-    public WebElement getReturnToDashboardButton() {
-        return driver.findElement(returnToDashboardButtonSelector);
-    }
-
-    public WebElement getMessage() {
-        return driver.findElement(messageSelector);
+    public SelenideElement getMessage() {
+        return $(messageSelector);
     }
 }

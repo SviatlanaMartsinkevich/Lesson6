@@ -1,48 +1,25 @@
 package pages;
 
 
-import baseEntities.BasePage;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-public class DashboardPage extends BasePage {
+import static com.codeborne.selenide.Selenide.$;
 
-    private static String ENDPOINT = "/dashboard";
-
-    private static final By PAGE_OPENED_IDENTIFIER = By.id("activityChart");
-
-    protected By addProjectButtonSelector = By.id("sidebar-projects-add");
-    protected By administratorButtonSelector = By.id("navigation-admin");
+public class DashboardPage {
+    private final By addProjectButtonSelector = By.id("sidebar-projects-add");
+    private final By administratorButtonSelector = By.id("navigation-admin");
     private static String projectFind = "//*[@style='padding-left: 25px' and text()='replace']";
 
-    public DashboardPage(WebDriver driver) {
-        super(driver);
+    public SelenideElement getAddProjectButton() {
+        return $(addProjectButtonSelector);
     }
 
-    public DashboardPage(WebDriver driver, boolean openPageByUrl) {
-        super(driver, openPageByUrl);
+    public SelenideElement getAdministratorButton() {
+        return $(administratorButtonSelector);
     }
 
-    @Override
-    protected void openPage() {
-        driver.get(BASE_URL + ENDPOINT);
-    }
-
-    @Override
-    public boolean isPageOpened() {
-        return waits.waitForVisibility(PAGE_OPENED_IDENTIFIER).isDisplayed();
-    }
-
-    public WebElement getAddProjectButton() {
-        return driver.findElement(addProjectButtonSelector);
-    }
-
-    public WebElement getAdministratorButton() {
-        return driver.findElement(administratorButtonSelector);
-    }
-
-    public WebElement getFindProject(String nameProject) {
-        return driver.findElement(By.xpath(projectFind.replace("replace", String.valueOf(nameProject))));
+    public SelenideElement getFindProject(String nameProject) {
+        return $(By.xpath(projectFind.replace("replace", String.valueOf(nameProject))));
     }
 }

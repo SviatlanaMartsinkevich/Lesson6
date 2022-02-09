@@ -17,7 +17,6 @@ public class Randomization {
                     (random.nextFloat() * (rightLimit - leftLimit + 1));
             buffer.append((char) randomLimitedInt);
         }
-
         return buffer.toString();
     }
 

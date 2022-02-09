@@ -1,66 +1,44 @@
 package pages;
 
-import baseEntities.BasePage;
+import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 
-public class AdministrationPage extends BasePage {
-    private static String ENDPOINT = "/admin/overview";
+import static com.codeborne.selenide.Selenide.$;
 
-    private static final By PAGE_OPENED_IDENTIFIER = By.cssSelector(".empty");
+public class AdministrationPage {
+    private final By overviewNavigationSelector = By.id("navigation-sub-overview");
+    private final By projectsNavigationSelector = By.id("navigation-sub-projects");
+    private final By usersNavigationSelector = By.id("navigation-sub-users");
+    private final By customizationNavigationSelector = By.id("navigation-sub-customization");
+    private final By integrationNavigationSelector = By.id("navigation-sub-integration");
+    private final By dataManagementNavigationSelector = By.id("navigation-sub-subscription");
+    private final By siteSettingNavigationSelector = By.id("navigation-sub-sitesettings");
 
-    protected By overviewNavigationSelector = By.id("navigation-sub-overview");
-    protected By projectsNavigationSelector = By.id("navigation-sub-projects");
-    protected By usersNavigationSelector = By.id("navigation-sub-users");
-    protected By customizationNavigationSelector = By.id("navigation-sub-customization");
-    protected By integrationNavigationSelector = By.id("navigation-sub-integration");
-    protected By dataManagementNavigationSelector = By.id("navigation-sub-subscription");
-    protected By siteSettingNavigationSelector = By.id("navigation-sub-sitesettings");
-
-    public AdministrationPage(WebDriver driver) {
-        super(driver);
+    public SelenideElement getOverviewNavigationButton() {
+        return $(overviewNavigationSelector);
     }
 
-    public AdministrationPage(WebDriver driver, boolean openPageByUrl) {
-        super(driver, openPageByUrl);
+    public SelenideElement getProjectsNavigationButton() {
+        return $(projectsNavigationSelector);
     }
 
-    @Override
-    protected void openPage() {
-        driver.get(BASE_URL + ENDPOINT);
+    public SelenideElement getUsersNavigationButton() {
+        return $(usersNavigationSelector);
     }
 
-    @Override
-    public boolean isPageOpened() {
-        return waits.waitForVisibility(PAGE_OPENED_IDENTIFIER).isDisplayed();
+    public SelenideElement getCustomizationNavigationButton() {
+        return $(customizationNavigationSelector);
     }
 
-    public WebElement getOverviewNavigationButton() {
-        return driver.findElement(overviewNavigationSelector);
+    public SelenideElement getIntegrationNavigationButton() {
+        return $(integrationNavigationSelector);
     }
 
-    public WebElement getProjectsNavigationButton() {
-        return driver.findElement(projectsNavigationSelector);
+    public SelenideElement getDataManagementNavigationButton() {
+        return $(dataManagementNavigationSelector);
     }
 
-    public WebElement getUsersNavigationButton() {
-        return driver.findElement(usersNavigationSelector);
-    }
-
-    public WebElement getCustomizationNavigationButton() {
-        return driver.findElement(customizationNavigationSelector);
-    }
-
-    public WebElement getIntegrationNavigationButton() {
-        return driver.findElement(integrationNavigationSelector);
-    }
-
-    public WebElement getDataManagementNavigationButton() {
-        return driver.findElement(dataManagementNavigationSelector);
-    }
-
-    public WebElement getSiteSettingNavigationButton() {
-        return driver.findElement(siteSettingNavigationSelector);
+    public SelenideElement getSiteSettingNavigationButton() {
+        return $(siteSettingNavigationSelector);
     }
 }
