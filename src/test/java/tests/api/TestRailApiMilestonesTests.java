@@ -33,7 +33,7 @@ public class TestRailApiMilestonesTests extends baseEntity.BaseApiTest {
                 .extract().jsonPath().get("id");
     }
 
-    @Test
+    @Test (dependsOnMethods = "addProjectTest")
     public void addMilestoneTest() {
         Milestone milestone = Milestone.builder()
                 .name("New milestone_01")
