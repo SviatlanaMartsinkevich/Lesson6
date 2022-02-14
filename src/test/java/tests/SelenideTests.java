@@ -189,5 +189,4 @@ public class SelenideTests {
 
         sleep(3000);
     }
-
 }

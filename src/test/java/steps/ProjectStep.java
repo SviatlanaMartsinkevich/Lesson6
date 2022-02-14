@@ -1,15 +1,14 @@
 package steps;
 
-import baseEntities.BaseStep;
 import models.Project;
 import pages.AddProjectPage;
 
-public class ProjectStep extends BaseStep {
+public class ProjectStep {
     private AddProjectPage addProjectPage;
 
     public void addNewProject(Project addProject) {
         addProjectPage = new AddProjectPage();
-        addProjectPage.getNameProjectField().val(addProject.getAnnouncement());
+        addProjectPage.getNameProjectField().val(addProject.getName());
         addProjectPage.getAnnouncementField().val(addProject.getAnnouncement());
         addProjectPage.getIsShowAnnouncementField().click();
         addProjectPage.getType(addProject.getTypeOfProject()).click();
