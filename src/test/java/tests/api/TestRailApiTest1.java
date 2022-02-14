@@ -104,7 +104,6 @@ public class TestRailApiTest1 extends BaseApiTest {
                 .name("WP_Project_04")
                 .typeOfProject(ProjectType.SINGLE_SUITE_BASELINES)
                 .build();
-
         projectID = given()
                 .body(project, ObjectMapperType.GSON)
                 .log().body()
@@ -114,6 +113,7 @@ public class TestRailApiTest1 extends BaseApiTest {
                 .log().body()
                 .statusCode(HttpStatus.SC_OK)
                 .extract().jsonPath().get("id");
+
 
         System.out.println(projectID);
     }
