@@ -7,15 +7,15 @@ import org.openqa.selenium.WebElement;
 import static com.codeborne.selenide.Selenide.$;
 
 public class AddMilestonePage {
-    protected By nameFieldSelector = By.id("name");
-    protected By referencesFieldSelector = By.id("reference");
-    protected By parentFieldSelector = By.className("chzn-single");
-    protected By descriptionFieldSelector = By.id("description_display");
-    protected By startDateFieldSelector = By.id("start_on");
-    protected By endDateFieldSelector = By.id("due_on");
-    protected By isCompletedCheckboxSelector = By.id("is_completed");
-    protected By addMilestoneButtonSelector = By.id("accept");
-    protected By cancelButtonSelector = By.xpath("//a[contains(@class, 'milestone-form-cancel')]");
+    private final By nameFieldSelector = By.id("name");
+    private final By referencesFieldSelector = By.id("reference");
+    private final By parentFieldSelector = By.className("chzn-single");
+    private final By descriptionFieldSelector = By.id("description_display");
+    private final By startDateFieldSelector = By.id("start_on");
+    private final By endDateFieldSelector = By.id("due_on");
+    private final By isCompletedCheckboxSelector = By.id("is_completed");
+    private final By addMilestoneButtonSelector = By.id("accept");
+    private final By cancelButtonSelector = By.xpath("//a[contains(@class, 'milestone-form-cancel')]");
 
     public SelenideElement getNameField() { return $(nameFieldSelector);}
     public SelenideElement getReferencesField() { return $(referencesFieldSelector);}

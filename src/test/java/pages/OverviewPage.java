@@ -21,7 +21,7 @@ public class OverviewPage {
     private final By addMilestoneNavigationSelector = By.id("navigation-overview-addmilestones");
     private final By testRunsNavigationSelector = By.id("navigation-overview-runs");
     private final By addTestRunsNavigationSelector = By.id("navigation-overview-addrunssuite");
-    private final By returnToDashboardButtonSelector = By.id("navigation-dashboard-top");
+    private final By returnToDashboardLinkSelector = By.id("navigation-dashboard-top");
     private final By messageSelector = By.xpath("//div[. = 'Successfully updated the project.']");
 
     public SelenideElement getEditButton() {
@@ -84,8 +84,8 @@ public class OverviewPage {
         return $(addTestRunsNavigationSelector);
     }
 
-    public SelenideElement getReturnToDashboardButton() {
-        return $(returnToDashboardButtonSelector);
+    public SelenideElement getReturnToDashboardLink() {
+        return $(returnToDashboardLinkSelector);
     }
 
     public SelenideElement getMessage() {

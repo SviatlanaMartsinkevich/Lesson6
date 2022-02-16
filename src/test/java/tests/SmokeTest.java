@@ -12,11 +12,7 @@ import steps.MilestoneStep;
 import steps.ProjectStep;
 import utils.Randomization;
 
-import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Condition.visible;
-import static com.codeborne.selenide.Selectors.byText;
-import static com.codeborne.selenide.Selectors.withText;
-import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
 public class SmokeTest extends BaseTest {
@@ -43,44 +39,58 @@ public class SmokeTest extends BaseTest {
         ProjectStep projectStep = new ProjectStep();
         projectStep.addNewProject(addProject);
 
-        System.out.println(addProject.getName());
-
-        $(byText(addProject.getName())).shouldBe(visible);
         ProjectPage projectPage = new ProjectPage();
+        projectPage.getFindProject(addProject.getName()).shouldBe(visible);
 
         projectPage.getReturnToDashboardPageButton().click();
     }
 
-    @Test (dependsOnMethods = "addProjectTest")
-    public void addMilestone() {
+    @Test(dependsOnMethods = "addProjectTest")
+    public void addMilestoneTest() {
         DashboardPage dashboardPage = new DashboardPage();
-
-        $(byText(addProject.getName())).click();
+        dashboardPage.getFindProject(addProject.getName()).click();
 
         addMilestones();
         MilestoneStep milestoneStep = new MilestoneStep();
         milestoneStep.addMilestone(addMilestone);
-        $(".message-success").shouldBe(visible).shouldHave(text("Successfully added the new milestone."));
+
+        MilestonePage milestonePage = new MilestonePage();
+        milestonePage.getAddedMilestoneMessage().shouldBe(visible);
+
+        OverviewPage overviewPage = new OverviewPage();
+        overviewPage.getReturnToDashboardLink().click();
     }
 
-    @Test
-    public void  updateTest() {
-        OverviewPage overviewPage =new OverviewPage();
-        overviewPage.getViewAllMilestonesSidebar().click();
-        $(byText(addMilestone.getName())).click();
+    @Test (dependsOnMethods = "addMilestoneTest")
+    public void updateMilestoneTest() {
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.getFindProject(addProject.getName()).click();
+
+        updateMilestones();
+        MilestoneStep milestoneStep = new MilestoneStep();
+        milestoneStep.updateMilestone(addMilestone, updateMilestone);
+
+        MilestoneViewPage milestoneViewPage = new MilestoneViewPage();
+        milestoneViewPage.getMessageEditMilestone().shouldBe(visible);
+
+        OverviewPage overviewPage = new OverviewPage();
+        overviewPage.getReturnToDashboardLink().click();
     }
 
+    @Test (dependsOnMethods = "updateMilestoneTest")
+    public void deleteMilestoneTest() {
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.getFindProject(addProject.getName()).click();
 
+        MilestoneStep milestoneStep = new MilestoneStep();
+        milestoneStep.deleteMilestone(updateMilestone);
 
+        MilestonePage milestonePage = new MilestonePage();
+        milestonePage.getDeletedMilestoneMessage().shouldBe(visible);
 
-
-
-
-
-
-
-
-
+        OverviewPage overviewPage = new OverviewPage();
+        overviewPage.getReturnToDashboardLink().click();
+    }
 
     private void addProjects() {
         addProject = new Project();
