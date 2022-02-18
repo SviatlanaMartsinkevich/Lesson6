@@ -74,7 +74,6 @@ public class BaseTest {
                 .setType(2)
                 .setTypeOfPriority(0);
 
-
         updateCase = new Case()
                 .setTitle(Randomization.getRandomString(8))
                 .setTypeOfPriority(1);
