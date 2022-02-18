@@ -5,7 +5,7 @@ import org.openqa.selenium.By;
 
 import static com.codeborne.selenide.Selenide.$;
 
-public class OverviewPage {
+public class ProjectOverviewPage {
     private final By editButtonSelector = By.xpath("//a[text() = 'Edit']");
     private final By reportsButtonSelector = By.xpath("//a[text() = 'Reports']");
     private final By milestonesSidebarSelector = By.id("sidebar-milestones-overview");
@@ -15,7 +15,7 @@ public class OverviewPage {
     private final By addTestRunsSidebarSelector = By.id("sidebar-runs-overview");
     private final By viewAllTestRunsSidebarSelector = By.id("sidebar-runs-overview");
     private final By testCasesSidebarSelector = By.id("sidebar-cases-overview");
-    private final By addTestCasesSidebarSelector = By.id("sidebar-cases-add");
+    private final By addTestCasesSidebarSelector = By.xpath("//*[@id = 'sidebar-cases-add']");
     private final By viewAllTestCasesSidebarSelector = By.id("sidebar-suites-viewall");
     private final By milestoneNavigationSelector = By.id("navigation-overview-viewmilestones");
     private final By addMilestoneNavigationSelector = By.id("navigation-overview-addmilestones");

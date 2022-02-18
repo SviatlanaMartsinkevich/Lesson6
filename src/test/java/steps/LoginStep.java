@@ -8,7 +8,6 @@ public class LoginStep {
 
     public void login(User user) {
         loginPage = new LoginPage();
-
         loginPage.getEmailField().val(user.getEmail());
         loginPage.getPasswordField().val(user.getPassword());
         loginPage.getLoginButton().click();

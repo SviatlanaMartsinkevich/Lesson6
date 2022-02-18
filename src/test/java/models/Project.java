@@ -16,39 +16,44 @@ public class Project {
         return name;
     }
 
-    public void setName(String name) {
+    public Project setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getAnnouncement() {
         return announcement;
     }
 
-    public void setAnnouncement(String announcement) {
+    public Project setAnnouncement(String announcement) {
         this.announcement = announcement;
+        return this;
     }
 
     public boolean isShowAnnouncement() {
         return isShowAnnouncement;
     }
 
-    public void setShowAnnouncement(boolean showAnnouncement) {
+    public Project setShowAnnouncement(boolean showAnnouncement) {
         isShowAnnouncement = showAnnouncement;
+        return this;
     }
 
     public int getTypeOfProject() {
         return typeOfProject;
     }
 
-    public void setTypeOfProject(int typeOfProject) {
+    public Project setTypeOfProject(int typeOfProject) {
         this.typeOfProject = typeOfProject;
+        return this;
     }
 
     public boolean isCompleted() {
         return isCompleted;
     }
 
-    public void setCompleted(boolean completed) {
+    public Project setCompleted(boolean completed) {
         isCompleted = completed;
+        return this;
     }
 }

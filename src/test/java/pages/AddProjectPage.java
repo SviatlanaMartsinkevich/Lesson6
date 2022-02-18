@@ -12,7 +12,7 @@ public class AddProjectPage {
     private final By isShowAnnouncementSelector = By.id("show_announcement");
     private final By addProjectButtonSelector = By.id("accept");
     private final By cancelButtonSelector = By.xpath("//a[contains(text(),'Cancel')][1]");
-    private static String typeRadioButtonSelector = "//*[@name = 'suite_mode' and @value='replace']";
+    private final String typeRadioButtonSelector = "//*[@name = 'suite_mode' and @value='replace']";
     private final By isCompletedSelector = By.id("is_completed");
 
 

@@ -16,55 +16,62 @@ public class Milestone {
         return name;
     }
 
-    public void setName(String name) {
+    public Milestone setName(String name) {
         this.name = name;
+        return this;
     }
 
     public String getReferences() {
         return references;
     }
 
-    public void setReferences(String references) {
+    public Milestone setReferences(String references) {
         this.references = references;
+        return this;
     }
 
     public String getParent() {
         return parent;
     }
 
-    public void setParent(String parent) {
+    public Milestone setParent(String parent) {
         this.parent = parent;
+        return this;
     }
 
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public Milestone setDescription(String description) {
         this.description = description;
+        return this;
     }
 
     public int getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(int startDate) {
+    public Milestone setStartDate(int startDate) {
         this.startDate = startDate;
+        return this;
     }
 
     public int getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(int endDate) {
+    public Milestone setEndDate(int endDate) {
         this.endDate = endDate;
+        return this;
     }
 
     public boolean isCompleted() {
         return isCompleted;
     }
 
-    public void setCompleted(boolean completed) {
+    public Milestone setCompleted(boolean completed) {
         isCompleted = completed;
+        return this;
     }
 }

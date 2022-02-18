@@ -6,9 +6,9 @@ import org.openqa.selenium.By;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ProjectPage {
-    private static String projectFind = "//*[text()='replace']";
+    private final String projectFind = "//*[text()='replace']";
     private final By returnToDashboardPageButtonSelector = By.id("navigation-dashboard");
-    private static String projectLineFind = "//*[text()='replace']/../..";
+    private final String projectLineFind = "//*[text()='replace']/../..";
     private final By deleteProjectButtonSelector = By.xpath("//*[@class='icon-small-delete']");
     private final By deleteCheckboxSelector = By.xpath("(//*[@class = 'dialog-confirm-busy']/..)//input");
     private final By agreeButtonSelector = By.xpath("//div[@id='deleteDialog']//a[contains(@class,'button button-ok')]");

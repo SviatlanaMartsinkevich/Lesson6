@@ -3,17 +3,16 @@ package tests;
 import baseEntities.BaseTest;
 import org.testng.annotations.Test;
 import pages.*;
-import steps.CaseStep;
 import steps.LoginStep;
+import steps.MilestoneStep;
 import steps.ProjectStep;
 
 import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.open;
 
-public class CaseTest extends BaseTest {
-
+public class MilestoneTest extends BaseTest {
     @Test
-    public void addCaseTest() {
+    public void addMilestoneTest() {
         open("/");
 
         LoginStep loginStep = new LoginStep();
@@ -30,41 +29,41 @@ public class CaseTest extends BaseTest {
 
         dashboardPage.getFindProject(addProject.getName()).click();
 
-        CaseStep caseStep = new CaseStep();
-        caseStep.addCase(addCase);
+        MilestoneStep milestoneStep = new MilestoneStep();
+        milestoneStep.addMilestone(addMilestone);
 
-        CaseViewPage caseViewPage = new CaseViewPage();
-        caseViewPage.getAddedCaseMessage().shouldBe(visible);
-
-        ProjectOverviewPage projectOverviewPage = new ProjectOverviewPage();
-        projectOverviewPage.getReturnToDashboardLink().click();
-    }
-
-    @Test(dependsOnMethods = "addCaseTest")
-    public void updateCaseTest() {
-        DashboardPage dashboardPage = new DashboardPage();
-        dashboardPage.getFindProject(addProject.getName()).click();
-
-        CaseStep caseStep = new CaseStep();
-        caseStep.updateCase(addCase, updateCase);
-
-        CaseViewPage caseViewPage = new CaseViewPage();
-        caseViewPage.getUpdatedCaseMessage().shouldBe(visible);
+        MilestonePage milestonePage = new MilestonePage();
+        milestonePage.getAddedMilestoneMessage().shouldBe(visible);
 
         ProjectOverviewPage projectOverviewPage = new ProjectOverviewPage();
         projectOverviewPage.getReturnToDashboardLink().click();
     }
 
-    @Test(dependsOnMethods = "updateCaseTest")
-    public void deleteCaseTest() {
+    @Test(dependsOnMethods = "addMilestoneTest")
+    public void updateMilestoneTest() {
         DashboardPage dashboardPage = new DashboardPage();
         dashboardPage.getFindProject(addProject.getName()).click();
 
-        CaseStep caseStep = new CaseStep();
-        caseStep.deleteCase(updateCase);
+        MilestoneStep milestoneStep = new MilestoneStep();
+        milestoneStep.updateMilestone(addMilestone, updateMilestone);
 
-        CasePage casePage = new CasePage();
-        casePage.getFindCase(updateCase.getTitle()).shouldNotBe(visible);
+        MilestoneViewPage milestoneViewPage = new MilestoneViewPage();
+        milestoneViewPage.getMessageEditMilestone().shouldBe(visible);
+
+        ProjectOverviewPage projectOverviewPage = new ProjectOverviewPage();
+        projectOverviewPage.getReturnToDashboardLink().click();
+    }
+
+    @Test(dependsOnMethods = "updateMilestoneTest")
+    public void deleteMilestoneTest() {
+        DashboardPage dashboardPage = new DashboardPage();
+        dashboardPage.getFindProject(addProject.getName()).click();
+
+        MilestoneStep milestoneStep = new MilestoneStep();
+        milestoneStep.deleteMilestone(updateMilestone);
+
+        MilestonePage milestonePage = new MilestonePage();
+        milestonePage.getDeletedMilestoneMessage().shouldBe(visible);
 
         ProjectOverviewPage projectOverviewPage = new ProjectOverviewPage();
         projectOverviewPage.getReturnToDashboardLink().click();

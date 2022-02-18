@@ -9,7 +9,7 @@ import static com.codeborne.selenide.Selenide.$;
 public class DashboardPage {
     private final By addProjectButtonSelector = By.id("sidebar-projects-add");
     private final By administratorButtonSelector = By.id("navigation-admin");
-    private static String projectFind = "//*[@style='padding-left: 25px' and text()='replace']";
+    private final String projectFind = "//*[@style='padding-left: 25px' and text()='replace']";
 
     public SelenideElement getAddProjectButton() {
         return $(addProjectButtonSelector);

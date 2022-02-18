@@ -8,8 +8,8 @@ import static com.codeborne.selenide.Selenide.$;
 public class MilestonePage {
     private final By addedMilestoneMessageSelector = By.xpath("//*[. = 'Successfully added the new milestone.']");
     private final By deletedMilestoneMessageSelector = By.xpath("//*[. = 'Successfully deleted the milestone.']");
-    private static String findMilestone = "//*[text()='replace']";
-    private static String findMilestoneField = "//*[. ='replace']/../../..";
+    private final String findMilestone = "//*[text()='replace']";
+    private final String findMilestoneField = "//*[. ='replace']/../../..";
     private final By deleteMilestoneButtonSelector = By.xpath("//*[. = 'Delete this milestone']");
     private final By deleteCheckboxSelector = By.xpath("(//*[ @id = 'deleteDialog'])//input");
     private final By agreeButtonSelector = By.xpath("//*[@id = 'deleteDialog']//a[contains(@class, 'button button-ok')]");

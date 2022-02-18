@@ -4,17 +4,17 @@ import models.Milestone;
 import pages.AddMilestonePage;
 import pages.MilestonePage;
 import pages.MilestoneViewPage;
-import pages.OverviewPage;
+import pages.ProjectOverviewPage;
 
 public class MilestoneStep {
-    private OverviewPage overviewPage;
+    private ProjectOverviewPage projectOverviewPage;
     private AddMilestonePage addMilestonePage;
     private MilestonePage milestonePage;
     private MilestoneViewPage milestoneViewPage;
 
     public MilestonePage addMilestone(Milestone addMilestone) {
-        overviewPage =new OverviewPage();
-        overviewPage.getAddMilestoneNavigation().click();
+        projectOverviewPage = new ProjectOverviewPage();
+        projectOverviewPage.getAddMilestoneNavigation().click();
         addMilestonePage = new AddMilestonePage();
         addMilestonePage.getNameField().val(addMilestone.getName());
         addMilestonePage.getReferencesField().val(addMilestone.getReferences());
@@ -26,8 +26,8 @@ public class MilestoneStep {
     }
 
     public MilestoneViewPage updateMilestone(Milestone addMilestone, Milestone updateMilestone) {
-        overviewPage =new OverviewPage();
-        overviewPage.getViewAllMilestonesSidebar().click();
+        projectOverviewPage = new ProjectOverviewPage();
+        projectOverviewPage.getViewAllMilestonesSidebar().click();
         milestonePage = new MilestonePage();
         milestonePage.getFindMilestone(addMilestone.getName()).click();
         milestoneViewPage = new MilestoneViewPage();
@@ -42,8 +42,8 @@ public class MilestoneStep {
     }
 
     public MilestonePage deleteMilestone(Milestone updateMilestone) {
-        overviewPage =new OverviewPage();
-        overviewPage.getViewAllMilestonesSidebar().click();
+        projectOverviewPage = new ProjectOverviewPage();
+        projectOverviewPage.getViewAllMilestonesSidebar().click();
         milestonePage = new MilestonePage();
         milestonePage.getFindMilestone(updateMilestone.getName()).click();
         milestoneViewPage = new MilestoneViewPage();

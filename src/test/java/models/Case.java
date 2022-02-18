@@ -1,18 +1,18 @@
 package models;
 
 public class Case {
-   private String title;
-   private String estimate;
-   private String references;
-   private String preconditions;
-   private String steps;
-   private String expectedResult;
+    private String title;
+    private String estimate;
+    private String references;
+    private String preconditions;
+    private String steps;
+    private String expectedResult;
 
-   private String section;
-   private String typeOfTemplate;
-   private String type;
-   private String typeOfPriority;
-   private String automationType;
+    private String section;
+    private int typeOfTemplate;
+    private int type;
+    private int typeOfPriority;
+    private String automationType;
 
     public Case() {
     }
@@ -21,87 +21,98 @@ public class Case {
         return title;
     }
 
-    public void setTitle(String title) {
+    public Case setTitle(String title) {
         this.title = title;
+        return this;
     }
 
     public String getEstimate() {
         return estimate;
     }
 
-    public void setEstimate(String estimate) {
+    public Case setEstimate(String estimate) {
         this.estimate = estimate;
+        return this;
     }
 
     public String getReferences() {
         return references;
     }
 
-    public void setReferences(String references) {
+    public Case setReferences(String references) {
         this.references = references;
+        return this;
     }
 
     public String getPreconditions() {
         return preconditions;
     }
 
-    public void setPreconditions(String preconditions) {
+    public Case setPreconditions(String preconditions) {
         this.preconditions = preconditions;
+        return this;
     }
 
     public String getSteps() {
         return steps;
     }
 
-    public void setSteps(String steps) {
+    public Case setSteps(String steps) {
         this.steps = steps;
+        return this;
     }
 
     public String getExpectedResult() {
         return expectedResult;
     }
 
-    public void setExpectedResult(String expectedResult) {
+    public Case setExpectedResult(String expectedResult) {
         this.expectedResult = expectedResult;
+        return this;
     }
 
     public String getSection() {
         return section;
     }
 
-    public void setSection(String section) {
+    public Case setSection(String section) {
         this.section = section;
+        return this;
     }
 
-    public String getTypeOfTemplate() {
+    public int getTypeOfTemplate() {
         return typeOfTemplate;
     }
 
-    public void setTypeOfTemplate(String typeOfTemplate) {
+    public Case setTypeOfTemplate(int typeOfTemplate) {
         this.typeOfTemplate = typeOfTemplate;
+        return this;
     }
 
-    public String getType() {
+    public int getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public Case setType(int type) {
         this.type = type;
+        return this;
     }
 
-    public String getTypeOfPriority() {
+    public int getTypeOfPriority() {
         return typeOfPriority;
     }
 
-    public void setTypeOfPriority(String typeOfPriority) {
+    public Case setTypeOfPriority(int typeOfPriority) {
         this.typeOfPriority = typeOfPriority;
+        return this;
     }
 
     public String getAutomationType() {
         return automationType;
     }
 
-    public void setAutomationType(String automationType) {
+    public Case setAutomationType(String automationType) {
         this.automationType = automationType;
+        return this;
     }
 }
