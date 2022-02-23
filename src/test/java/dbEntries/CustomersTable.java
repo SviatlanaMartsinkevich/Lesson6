@@ -52,7 +52,7 @@ public class CustomersTable {
     }
 
     public void addCustomer(String firstname, String lastname, String email, int age) {
-        logger.info("Добавляем запист в таблицу customers");
+        logger.info("Добавляем записи в таблицу customers");
 
         String insertTableSQL = "INSERT INTO public.customers(" +
                 "firstname, lastname, email, age)" +

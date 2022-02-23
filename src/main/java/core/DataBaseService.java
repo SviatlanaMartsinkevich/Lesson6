@@ -7,9 +7,9 @@ import java.sql.*;
 public class DataBaseService {
     public static Logger logger = Logger.getLogger(DataBaseService.class);
 
-    static final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
-    static final String USER = "postgres";
-    static final String PASSWORD = "postgres";
+    public static final String DB_URL = "jdbc:postgresql://localhost:5432/postgres";
+    public static final String USER = "postgres";
+    public static final String PASSWORD = "postgres";
 
     Connection connection = null;
     Statement statement = null;
